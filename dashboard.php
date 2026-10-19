@@ -230,43 +230,6 @@ h1,h2,h3,h4{font-weight:800;color:var(--dark);line-height:1.2}
 .tot b{font-family:var(--mono);font-size:2rem;font-weight:600;color:var(--dark)}
 .tot span{font-size:.8rem;color:var(--faint)}
 
-/* chat */
-.chat{display:flex;flex-direction:column;height:600px;padding:0;overflow:hidden}
-.chat-h{display:flex;align-items:center;gap:12px;padding:16px 22px;border-bottom:1px solid var(--border-soft)}
-.bot{position:relative;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:1.3rem;background:var(--tint)}
-.bot::after{content:"";position:absolute;right:0;bottom:0;width:11px;height:11px;border-radius:50%;background:#3fe08a;border:2px solid #fff}
-.chat-h b{display:block;font-size:.9rem;color:var(--dark)}.chat-h small{font-size:.74rem;color:var(--faint)}
-.chat-box{flex:1;padding:20px 22px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;background:var(--bg)}
-.msg{max-width:78%;padding:12px 16px;font-size:.88rem;line-height:1.55;animation:pop .35s var(--ease) both}
-@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.96)}}
-.msg.b{align-self:flex-start;background:#fff;border:1px solid var(--border);border-radius:16px 16px 16px 4px}
-.msg.u{align-self:flex-end;background:var(--dark);color:#fff;border-radius:16px 16px 4px 16px}
-.dots{display:inline-flex;gap:4px;padding:3px 0}.dots i{width:6px;height:6px;border-radius:50%;background:var(--olive);animation:bn 1s infinite}
-.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
-@keyframes bn{40%{transform:translateY(-5px)}}
-.qc{display:flex;gap:8px;flex-wrap:wrap;padding:12px 22px 0;background:#fff;border-top:1px solid var(--border-soft)}
-.qc button{padding:7px 13px;border-radius:99px;font-size:.76rem;font-weight:700;border:1px solid var(--border);color:var(--dark);background:#fff;transition:.15s}
-.qc button:hover{background:var(--tint);border-color:var(--lime)}
-.chat-in{display:flex;gap:10px;padding:12px 18px 16px;background:#fff}
-.chat-in input{flex:1;padding:12px 18px;border-radius:99px;border:1.5px solid var(--border);outline:none;font-size:.88rem}
-.chat-in input:focus{border-color:var(--olive);box-shadow:0 0 0 3px rgba(122,154,46,.14)}
-.chat-in button{padding:0 22px;border-radius:99px;background:var(--dark);color:#fff;font-weight:700;font-size:.86rem;transition:.15s}
-.chat-in button:hover{background:var(--dark2)}
-
-/* edukasi */
-.ed{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.art{cursor:pointer;padding:0;overflow:hidden;display:flex;flex-direction:column}
-.art .th{height:110px;display:grid;place-items:center;font-size:2.8rem;background:var(--c)}
-.art .th span{transition:transform .4s var(--ease)}.art:hover .th span{transform:scale(1.18) rotate(-6deg)}
-.art .bd{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
-.art h3{font-size:1rem;margin-bottom:6px}.art p{font-size:.82rem;color:var(--muted);flex:1}
-.art .rd{margin-top:12px;font-size:.8rem;font-weight:800;color:var(--olive)}
-#modal{position:fixed;inset:0;z-index:200;display:none;place-items:center;padding:20px;background:rgba(11,59,54,.45);backdrop-filter:blur(3px)}
-#modal.show{display:grid}
-.mbox{position:relative;background:#fff;border-radius:18px;max-width:540px;width:100%;padding:30px;box-shadow:0 24px 70px rgba(11,59,54,.3);animation:pop .3s var(--ease)}
-.mbox h2{font-size:1.3rem;margin-bottom:12px;padding-right:30px}.mbox p{font-size:.9rem;color:var(--muted);margin-bottom:10px}
-.x{position:absolute;right:14px;top:14px;width:32px;height:32px;border-radius:8px;background:var(--bg);display:grid;place-items:center;color:var(--muted)}
-.x:hover{background:var(--tint2)}.x svg{width:15px;height:15px}
 .narrow{max-width:520px}
 
 .toasts{position:fixed;right:22px;bottom:22px;z-index:300;display:grid;gap:10px}
@@ -473,23 +436,19 @@ body{
 
 /* ---------- Tab, chat, toast ---------- */
 .tab.on{background:linear-gradient(135deg,var(--dark),var(--dark2));box-shadow:0 6px 14px -6px rgba(11,59,54,.5)}
-.chat-h{background:linear-gradient(135deg,var(--tint),#fff)}
-.msg.u{background:linear-gradient(135deg,var(--dark),var(--dark2))}
-.chat-in button{background:linear-gradient(135deg,var(--dark),var(--dark2))}
 .toast{border-left:4px solid var(--lime)}
 .insight{background:linear-gradient(135deg,var(--tint),#fff)}
-.mbox{border-top:4px solid var(--lime)}
 
-@media(max-width:1180px){.g4{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}.ed{grid-template-columns:1fr 1fr}}
+@media(max-width:1180px){.g4{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}}
 @media(max-width:900px){
   .sidebar{position:fixed;left:0;top:0;transform:translateX(-100%)}.sidebar.open{transform:none;box-shadow:0 0 40px rgba(11,59,54,.2)}
   .scrim.show{opacity:1;pointer-events:auto}
   .burger{display:flex}.date,.chip-user div{display:none}.chip-user{padding:5px}
   .topbar{padding:12px 16px}.content{padding:18px 16px 50px}
-  .form-grid,.g2e,.fc{grid-template-columns:1fr}.chips4{grid-template-columns:1fr 1fr}.ed{grid-template-columns:1fr}
+  .form-grid,.g2e,.fc{grid-template-columns:1fr}.chips4{grid-template-columns:1fr 1fr}
   .ring-w{flex-direction:column;align-items:flex-start}
 }
-@media(max-width:560px){.g4{grid-template-columns:1fr}.msg{max-width:92%}}
+@media(max-width:560px){.g4{grid-template-columns:1fr}}
 @media(max-width:900px){.hero-vid{width:100%;opacity:.28}.iv-grid{grid-template-columns:1fr}.clk small,.clk-ic{display:none}.clk{padding:8px 12px}.sd-grid{grid-template-columns:1fr 1fr}.hero-card{padding:24px 20px}.hero-side{min-width:0;width:100%}.sec-h h1{font-size:1.4rem}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.cl{stroke-dashoffset:0!important}.ca,.cd{opacity:1!important}}
 </style>
@@ -613,23 +572,6 @@ body{
         <div class="card" id="intvCard"></div>
       </section>
 
-      <!-- 4. CHAT -->
-      <section class="page" id="page-chatbot">
-        <div class="sec-h"><h1>Konsultasi AI</h1><p>Tanyakan apa saja seputar diet, kalori, dan gaya hidup sehat.</p></div>
-        <div class="card chat">
-          <div class="chat-h"><div class="bot">🤖</div><div><b>Asisten Gizi GEND-OFF</b><small>● Online · siap membantu</small></div></div>
-          <div class="chat-box" id="chatBox"></div>
-          <div class="qc" id="qc"></div>
-          <form class="chat-in" id="chatF"><input type="text" id="chatI" placeholder="Ketik pertanyaanmu di sini..." autocomplete="off"><button type="submit">Kirim</button></form>
-        </div>
-      </section>
-
-      <!-- 5. EDUKASI -->
-      <section class="page" id="page-edukasi">
-        <div class="sec-h"><h1>Edukasi Pengguna</h1><p>Artikel praktis untuk menunjang program dietmu. Klik kartu untuk membaca.</p></div>
-        <div class="ed" id="edG"></div>
-      </section>
-
       <!-- 6. EKSPOR -->
       <section class="page" id="page-ekspor">
         <div class="sec-h"><h1>Ekspor Laporan Riwayat</h1><p>Unduh laporan progres diet dan tracking harianmu.</p></div>
@@ -640,22 +582,10 @@ body{
         </div>
       </section>
 
-      <!-- 7. PROFIL -->
-      <section class="page" id="page-profil">
-        <div class="sec-h"><h1>Kelola Profil</h1><p>Perbarui data akun dan preferensi sistem.</p></div>
-        <div class="card narrow">
-          <div class="field" style="margin-bottom:14px"><label>Username</label><input type="text" id="pU" value="<?= $username ?>"></div>
-          <div class="field" style="margin-bottom:14px"><label>Email</label><input type="email" value="<?= strtolower($username) ?>@gend-off.com"></div>
-          <div class="field" style="margin-bottom:20px"><label>Kata Sandi Baru</label><input type="password" placeholder="Biarkan kosong jika tidak ingin ganti"></div>
-          <button class="btn btn-p btn-w" id="btP">Simpan Perubahan</button>
-        </div>
-      </section>
-
     </main>
   </div>
 </div>
 
-<div id="modal"><div class="mbox"><button class="x" id="mx" aria-label="Tutup"></button><div id="mb"></div></div></div>
 <div class="toasts" id="toasts"></div>
 
 <script>
@@ -687,12 +617,11 @@ const NAV=[
  {g:'Konsultasi & Belajar',items:[['chatbot','Konsultasi AI','chat','Tanya jawab seputar diet dan gizi'],['edukasi','Edukasi Pengguna','book','Artikel gizi dan gaya hidup sehat']]},
  {g:'Laporan & Akun',items:[['ekspor','Ekspor Laporan','file','Unduh riwayat progres dalam PDF atau Excel'],['profil','Kelola Profil','user','Data akun dan preferensi']]}
 ];
-const LINKS={deteksi:'deteksi_obesitas.php',gizi:'gizi_planner.php',olahraga:'olahraga_planner.php'};
+const LINKS={deteksi:'deteksi_obesitas.php',gizi:'gizi_planner.php',olahraga:'olahraga.php',chatbot:'chatbot.php',edukasi:'edukasi_pengguna.php',profil:'profil.php'};
 $('#nav').innerHTML=NAV.map(n=>`<div class="nav-label">${n.g}</div>`+n.items.map(i=>LINKS[i[0]]?`<a class="nav-item" href="${LINKS[i[0]]}"><span class="ic">${ICON[i[2]]}</span>${i[1]}</a>`:`<button class="nav-item${i[0]==='dashboard'?' active':''}" data-target="${i[0]}"><span class="ic">${ICON[i[2]]}</span>${i[1]}</button>`).join('')).join('');
 const META={};NAV.forEach(n=>n.items.forEach(i=>META[i[0]]=[i[1],i[3]]));
 $$('#nav > *').forEach((e,i)=>e.style.setProperty('--i',i));
 $$('[data-i]').forEach(e=>e.innerHTML=ICON[e.dataset.i]);
-$('#mx').innerHTML=ICON.close;
 
 /* ===== STATE ===== */
 const KEY='gendoff_dash_v3';let S;
@@ -732,7 +661,7 @@ function show(t){
   $('#page-'+t).classList.add('active');stagger(t);
   $('#tbT').textContent=META[t][0];$('#tbS').textContent=META[t][1];
   closeSide();scrollTo({top:0});
-  if(t==='dashboard')renderAll();if(t==='chatbot')setTimeout(()=>$('#chatI').focus(),300);
+  if(t==='dashboard')renderAll();
 }
 $('#nav').addEventListener('click',e=>{const b=e.target.closest('.nav-item');if(b&&b.dataset.target)show(b.dataset.target)});
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)show(g.dataset.go)});
@@ -885,49 +814,6 @@ function renderIntv(){
     <div class="iv-st"><span class="tag">Kalori ${e>S.target?'melewati target':'masih aman'}</span><span class="tag">Air ${S.water}/8 gelas</span><span class="tag">Ceklist ${S.checks.filter(Boolean).length}/4</span></div>`;
 }
 
-/* ===== CHATBOT ===== */
-const RULES=[
- [/gorengan|goreng/,()=>`Secara teknis boleh, selama total kalorinya masih masuk target harianmu (${fmt(S.target)} kkal). Tapi gorengan padat kalori dan minim gizi, jadi batasi 1–2 potong seminggu dan imbangi dengan sayur.`],
- [/nasi|karbo|karbohidrat/,()=>'Karbohidrat bukan musuh. Pilih yang kompleks seperti nasi merah, ubi, atau oat dengan porsi 80–150 g per makan dan perbanyak sayur.'],
- [/minum|air|hidrasi/,()=>'Targetkan sekitar 2 liter (8 gelas) per hari. Minum segelas sebelum makan juga membantu kenyang lebih cepat.'],
- [/olahraga|latihan|jalan|cardio|kardio/,()=>'Kombinasikan jalan cepat atau sepeda 30 menit/hari dengan latihan beban ringan 2× seminggu. Mulai pelan, yang penting konsisten.'],
- [/kalori|target|defisit/,()=>`Target harianmu saat ini ${fmt(S.target)} kkal (defisit sekitar 500 kkal dari kebutuhan energi). Defisit moderat lebih aman dan bisa dipertahankan.`],
- [/bmi|obesitas|berat/,()=>`BMI-mu sekarang ${dec(bmiNow(),1)} (${cat(bmiNow())[0]}, standar Asia-Pasifik). Untuk analisis lengkap, buka menu Deteksi Obesitas.`],
- [/lapar|ngemil|camilan|snack/,()=>'Kalau lapar di sela makan, pilih camilan utuh: buah, yoghurt plain, atau segenggam almond. Serat dan protein membuat kenyang lebih lama.'],
- [/lambung|maag|gerd/,()=>'Untuk asam lambung: makan porsi kecil tapi sering, hindari pedas, asam, kopi, dan gorengan.'],
- [/protein|otot/,()=>'Protein menjaga massa otot saat defisit. Sumber bagus: telur, ikan, dada ayam, tempe, dan tahu di setiap waktu makan.'],
- [/malam/,()=>'Makan malam boleh pakai nasi. Atur porsi 80–100 g, perbanyak sayur, dan beri jeda 2–3 jam sebelum tidur.'],
- [/sarapan/,()=>'Sarapan berprotein (telur, tempe) plus serat membantu kenyang sampai siang dan menjaga energi.'],
- [/tidur/,()=>'Tidur 7–8 jam membantu mengatur hormon lapar. Kurang tidur sering memicu keinginan ngemil.'],
- [/terima kasih|makasih|thanks/,()=>'Sama-sama! Semangat terus ya 💪'],
- [/halo|hai|hi\b|hello/,()=>`Halo ${esc($('#uName').textContent)}! Mau tanya soal diet, kalori, atau olahraga?`]
-];
-const QS=['Boleh makan gorengan?','Berapa target kalorinya?','Tips biar nggak lapar','Berapa air yang harus diminum?'];
-function addMsg(t,w,html){const d=document.createElement('div');d.className='msg '+w;if(html)d.innerHTML=t;else d.textContent=t;$('#chatBox').appendChild(d);$('#chatBox').scrollTop=1e5;return d}
-function ask(q){
-  if(!q.trim())return;addMsg(q,'u');$('#chatI').value='';
-  const t=addMsg('<span class="dots"><i></i><i></i><i></i></span>','b',true);
-  setTimeout(()=>{const r=RULES.find(x=>x[0].test(q.toLowerCase()));t.textContent=r?r[1]():'Saya belum punya jawaban pasti untuk itu. Coba tanyakan soal kalori, air minum, olahraga, protein, atau camilan. Untuk kondisi medis tertentu, konsultasikan ke dokter atau ahli gizi.';$('#chatBox').scrollTop=1e5},700+Math.random()*400);
-}
-$('#chatF').onsubmit=e=>{e.preventDefault();ask($('#chatI').value)};
-$('#qc').innerHTML=QS.map(q=>`<button type="button">${q}</button>`).join('');
-$('#qc').onclick=e=>{const b=e.target.closest('button');if(b)ask(b.textContent)};
-
-/* ===== EDUKASI ===== */
-const ART=[
- ['Mitos vs Fakta: Karbohidrat','🍚','#eef5d8','Karbohidrat kompleks vs simpel agar diet tetap berenergi.',['Karbohidrat adalah sumber energi utama, bukan musuh diet. Yang perlu diatur adalah jenis dan porsinya.','Pilih karbohidrat kompleks (nasi merah, ubi, oat) yang dicerna lambat sehingga kenyang lebih lama. Batasi karbohidrat simpel seperti minuman manis dan roti putih.']],
- ['Pentingnya Hidrasi','💧','#e3f1fa','Air putih membantu metabolisme. Berapa yang kamu butuhkan?',['Kebutuhan umum sekitar 2 liter per hari, lebih banyak jika aktif atau cuaca panas.','Haus kadang disangka lapar. Minum segelas air sebelum makan membantu mengendalikan porsi.']],
- ['Defisit Kalori yang Aman','🔥','#fff1d3','Cara menurunkan berat badan tanpa diet ekstrem.',['Defisit moderat sekitar 500 kkal/hari menurunkan ±0,5 kg per minggu, aman dan bisa dipertahankan.','Jangan makan di bawah batas minimum (±1.200 kkal perempuan, ±1.500 kkal laki-laki) tanpa pengawasan tenaga kesehatan.']],
- ['Protein Saat Diet','🥚','#fbe6da','Menjaga massa otot ketika kalori dikurangi.',['Protein membuat kenyang lebih lama dan membantu menjaga otot.','Sumber mudah dan murah: telur, tempe, tahu, ikan, dan dada ayam.']],
- ['Tidur &amp; Berat Badan','😴','#e8e4f8','Mengapa kurang tidur membuat kita lebih lapar.',['Kurang tidur meningkatkan hormon lapar dan menurunkan hormon kenyang.','Usahakan tidur 7–8 jam dengan jam yang teratur.']],
- ['Membaca Label Gizi','🏷️','#dff3e6','Kenali kalori, gula, dan natrium dalam kemasan.',['Perhatikan takaran saji: satu kemasan sering berisi lebih dari satu porsi.','Waspadai gula tambahan dan natrium yang tinggi pada makanan olahan.']]
-];
-$('#edG').innerHTML=ART.map((a,i)=>`<div class="card art hov" data-i="${i}"><div class="th" style="--c:${a[2]}"><span>${a[1]}</span></div><div class="bd"><h3>${a[0]}</h3><p>${a[3]}</p><span class="rd">Baca artikel →</span></div></div>`).join('');
-$('#edG').onclick=e=>{const c=e.target.closest('.art');if(!c)return;const a=ART[+c.dataset.i];$('#mb').innerHTML=`<h2>${a[1]} ${a[0]}</h2>${a[4].map(p=>`<p>${p}</p>`).join('')}`;$('#modal').classList.add('show')};
-$('#mx').onclick=()=>$('#modal').classList.remove('show');
-$('#modal').onclick=e=>{if(e.target.id==='modal')$('#modal').classList.remove('show')};
-addEventListener('keydown',e=>{if(e.key==='Escape')$('#modal').classList.remove('show')});
-
 /* ===== EKSPOR ===== */
 $('#btX').onclick=()=>{
   const n=+$('#xP').value,ws=n?S.weights.slice(-n):S.weights,f=$('#xF').value,nm=$('#uName').textContent;
@@ -942,10 +828,6 @@ $('#btX').onclick=()=>{
   }
 };
 
-/* ===== PROFIL ===== */
-$('#btP').onclick=()=>{const u=$('#pU').value.trim();if(!u){toast('Username tidak boleh kosong');return}
-  $('#uName').textContent=u;$('#uAv').textContent=u.charAt(0).toUpperCase();toast('Perubahan disimpan (hubungkan ke database agar permanen)')};
-
 /* ===== INIT ===== */
 load();
 const hr=new Date().getHours();$('#greet').textContent=hr<11?'Selamat pagi':hr<15?'Selamat siang':hr<18?'Selamat sore':'Selamat malam';
@@ -955,7 +837,6 @@ function tick(){const n=new Date();
 tick();setInterval(tick,1000);
 if(matchMedia('(prefers-reduced-motion:reduce)').matches){const hv=$('.hero-vid');if(hv)hv.pause()}
 $('#tbT').textContent=META.dashboard[0];$('#tbS').textContent=META.dashboard[1];
-addMsg(`Halo ${esc($('#uName').textContent)}! 👋 Saya asisten pakar gizimu. Ada yang ingin ditanyakan soal diet defisit kalori hari ini?`,'b');
 renderAll();stagger('dashboard');
 const hh=location.hash.slice(1);if(hh&&hh!=='dashboard'&&META[hh])show(hh);
 </script>
