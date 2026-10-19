@@ -562,6 +562,73 @@ body{
 .srch input:focus{outline:none;border-color:var(--olive);box-shadow:0 0 0 3px rgba(164,194,61,.2)}
 .ls .sbh:first-child{margin-top:4px}
 @media(max-width:1180px){.lw{position:static;min-height:0}.ls{position:static}}
+
+/* =====================================================
+   Gizi Planner: banner rapi, judul hijau tua, tab tercatat
+   ===================================================== */
+.gz-top{
+  background:
+    radial-gradient(620px 300px at 100% 0%,rgba(164,194,61,.15),transparent 72%),
+    radial-gradient(420px 260px at 0% 100%,rgba(18,82,74,.55),transparent 75%),
+    linear-gradient(135deg,var(--dark2) 0%,var(--dark) 58%,var(--dark3) 100%);
+}
+.gz-top::after{display:none}
+.gz-h{align-items:stretch;gap:22px}
+.gz-l{display:flex;flex-direction:column;justify-content:flex-end;gap:6px}
+.gz-tag{max-width:340px;width:100%;text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:9px;
+  padding:14px 16px;border-radius:16px;border:1px solid rgba(255,255,255,.1);
+  background:linear-gradient(145deg,rgba(164,194,61,.14) 0%,rgba(255,255,255,.05) 55%,rgba(255,255,255,.02) 100%);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.gz-tag p{margin:0;font-size:.8rem;line-height:1.55;color:rgba(255,255,255,.78)}
+.gz-badge{display:inline-flex;align-items:center;gap:7px;padding:4px 12px 4px 10px;font-size:.76rem;color:#d4e89a;
+  background:linear-gradient(90deg,rgba(164,194,61,.22),rgba(164,194,61,.06));border:1px solid rgba(164,194,61,.22)}
+.gz-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 3px rgba(164,194,61,.2)}
+.gz-badge.warn{color:#f6d57a;background:linear-gradient(90deg,rgba(245,184,46,.2),rgba(245,184,46,.05));border-color:rgba(245,184,46,.25)}
+.gz-badge.warn::before{background:#f5c84e;box-shadow:0 0 0 3px rgba(245,184,46,.2)}
+.gz-tag a.gz-re{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:99px;font-size:.78rem;font-weight:700;text-decoration:none;
+  color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);transition:.2s}
+.gz-tag a.gz-re:hover{background:var(--lime);border-color:var(--lime);color:var(--dark);transform:translateY(-1px)}
+
+/* judul kategori: kartu hijau tua */
+.gh{padding:11px 16px 11px 12px;border-radius:12px;color:#fff;margin-bottom:16px;
+  background:radial-gradient(240px 90px at 100% 0%,rgba(164,194,61,.22),transparent 70%),linear-gradient(135deg,var(--dark2) 0%,var(--dark) 62%,var(--dark3) 100%);
+  box-shadow:0 10px 20px -14px rgba(6,34,31,.75)}
+.gh i{background:var(--lime);color:var(--dark);width:30px;height:30px}
+.gh b{color:#fff;font-size:1rem;line-height:1.25}
+.gh small{color:rgba(255,255,255,.72);font-weight:500}
+
+/* kotak hint hijau muda: gradasi natural */
+.jt,.tipb,.adj{background:radial-gradient(360px 140px at 0% 0%,var(--tint2),transparent 74%),linear-gradient(180deg,#fff,#fbfdf8);border:1px solid var(--border-soft)}
+.nut.on,.fd.on{background:radial-gradient(260px 120px at 0% 0%,var(--tint2),transparent 75%),#fff}
+
+/* tab makanan tercatat */
+.tab.log{border-style:dashed;border-color:#b9cc8f;color:var(--dark)}
+.tab.log.on{border-style:solid}
+.tab .cnt{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;margin-left:6px;border-radius:99px;font-family:var(--mono);font-size:.7rem;font-weight:600;background:var(--tint2);color:var(--dark)}
+.tab.on .cnt{background:rgba(255,255,255,.2);color:#fff}
+.lg-h{display:flex;align-items:center;gap:8px;margin:16px 0 8px;font-size:.78rem;font-weight:800;color:var(--dark)}
+.lg-h span{margin-left:auto;font-family:var(--mono);font-size:.74rem;color:var(--olive);font-weight:600}
+.ck.lgk b{text-decoration:none;opacity:1}
+
+/* ---- revisi: banner ringkas, glow pojok kanan, tab tercatat terbaca ---- */
+.gz-top{display:flex;align-items:center;justify-content:space-between;gap:20px 28px;flex-wrap:wrap;padding:18px 24px}
+.gz-top::after{display:block;content:"";position:absolute;right:-90px;top:-110px;width:380px;height:380px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(164,194,61,.26) 0%,rgba(164,194,61,.09) 45%,transparent 70%)}
+.gz-h{flex:1 1 280px;align-items:flex-start;gap:0}
+.gz-l{align-items:flex-start;justify-content:flex-start;gap:4px}
+.gz-badge{margin-bottom:6px}
+.gz-w{margin:0 0 6px;font-size:.78rem;color:rgba(255,255,255,.78)}.gz-w a{color:var(--lime);font-weight:700;text-decoration:underline}
+.gz-big b{font-size:2.2rem}
+.gz-m{margin-top:0;flex:0 1 auto;grid-template-columns:repeat(3,minmax(116px,auto));gap:10px}
+.gz-m>div{padding:9px 14px}
+.gz-m b{font-size:1.02rem}
+.gz-m span{font-size:.64rem}
+.gh{padding:8px 14px 8px 10px;margin-bottom:12px;border-radius:11px}
+.gh i{width:26px;height:26px;font-size:.78rem}
+.gh b{font-size:.94rem}
+.gh small{font-size:.7rem}
+.tab.log.on{color:#fff;border-color:var(--dark)}
+@media(max-width:900px){.gz-m{grid-template-columns:1fr;width:100%}.gz-top{padding:16px 18px}}
 </style>
 </head>
 <body>
@@ -751,12 +818,11 @@ function sync(i){const ck=S.chk[i]||[];let k=0,n=0;
   S.mk[i]=k;S.eaten[i]=n>0;if(n)S.checks[1]=true}
 
 /* ===== TAMPILAN ===== */
-let selN='p',selId='tl',qry='',mi=0;
+let selN='p',selId='tl',qry='',mi=0,logView=false;
 const gh=(n,t,s)=>`<div class="gh"><i>${n}</i><div><b>${t}</b><small>${s}</small></div></div>`;
 function drawTop(){
   const L=S.last;
-  $('#gzTop').innerHTML=`<div class="gz-h"><div><span class="gz-k">Target energi harian</span><div class="gz-big"><b id="gzT" data-v="0">0</b><small>kkal</small></div></div>
-    <div class="gz-tag">${L?`<span class="gz-badge">Dari hasil deteksimu</span><p>Semua angka di bawah dihitung dari analisis terakhir. <a href="deteksi_obesitas.php">Deteksi ulang</a></p>`:`<span class="gz-badge warn">Belum ada analisis</span><p>Angka masih bawaan. <a href="deteksi_obesitas.php">Lakukan deteksi obesitas</a> agar gizi sesuai kondisimu.</p>`}</div></div>
+  $('#gzTop').innerHTML=`<div class="gz-h"><div class="gz-l">${L?`<span class="gz-badge">Dari hasil deteksimu</span>`:`<span class="gz-badge warn">Belum ada analisis</span><p class="gz-w">Angka masih bawaan. <a href="deteksi_obesitas.php">Lakukan deteksi obesitas</a> agar gizi sesuai kondisimu.</p>`}<span class="gz-k">Target energi harian</span><div class="gz-big"><b id="gzT" data-v="0">0</b><small>kkal</small></div></div></div>
     <div class="gz-m"><div><b>${L?dec(L.bmi,1):'—'}</b><span>BMI</span></div><div><b>${L?L.cat:'—'}</b><span>Kategori</span></div><div><b>${L?L.risk:'—'}</b><span>Risiko kesehatan</span></div></div>`;
   countTo($('#gzT'),S.target);
 }
@@ -781,7 +847,7 @@ function rowF(id,N){
 function list2(){
   const N=needs()[selN],nl=N.n.toLowerCase(),q=qry.trim().toLowerCase(),k=VK[selN],main=SRC[selN],hit=id=>!q||ALL[id][0].toLowerCase().includes(q);
   const m=main.filter(hit),o=Object.keys(ALL).filter(id=>!main.includes(id)&&ALL[id][k]/ALL[id][3]*100>=TH[selN]&&hit(id)).sort((a,b)=>ALL[b][k]/ALL[b][3]-ALL[a][k]/ALL[a][3]);
-  return m.map(id=>rowF(id,N)).join('')+(o.length?(q?'':`<div class="sbh">Makanan lain yang mengandung ${nl}</div>`)+o.map(id=>rowF(id,N)).join(''):'')+
+  return m.map(id=>rowF(id,N)).join('')+(o.length?o.map(id=>rowF(id,N)).join(''):'')+
    (!m.length&&!o.length?`<div class="jt">Tidak ada makanan "${esc(qry)}" dengan kandungan ${nl} yang cukup.</div>`:'');
 }
 function draw2(){
@@ -800,12 +866,24 @@ function draw3(){
    <div class="jt" style="margin:12px 0 0">Anggaran per makan: ${ORDER.map(i=>MEALS[i].k+' '+mealKcal(i)).join(' · ')} kkal. Pilih pengolahan yang masih muat, dan hitung bahan tambahannya.</div></div></div>`;
 }
 const mealDone=i=>{const ck=S.chk[i]||[];return mealItems(i).every((_,j)=>ck[j])};
+function logCard(t){
+  let n=0;
+  const groups=ORDER.map(i=>{const ck=S.chk[i]||[],its=mealItems(i);
+    const rows=its.map((x,j)=>ck[j]?`<label class="ck on lgk"><input type="checkbox" data-m="${i}" data-j="${j}" checked><div><b>${x.F[0]} · ${x.M[0]}</b><small>${qs(x.q)} × ${x.F[2]} ≈ ${x.g} g · P ${Math.round(x.p)} · K ${Math.round(x.c)} · L ${Math.round(x.l)} · S ${Math.round(x.fi)} g</small></div><span>${x.kcal} kkal</span></label>`:'').join('');
+    const c=its.filter((_,j)=>ck[j]).length;n+=c;
+    return c?`<div class="lg-h">${MEALS[i].e} ${MEALS[i].k}<span>${S.mk[i]||0} kkal</span></div>${rows}`:''}).join('');
+  return `<div class="mh"><div class="em">✅</div><div><h3>Sudah dimakan</h3><small>${n} makanan tercatat hari ini · tersimpan otomatis</small></div><div class="kal">${fmt(t.kcal)} kkal</div></div>
+   ${n?groups+`<div class="sbh" style="margin:14px 0 8px">Total gizi yang sudah masuk</div><div class="mm" style="grid-template-columns:repeat(4,1fr)">${[['Protein','p'],['Karbo','c'],['Lemak','l'],['Serat','fi']].map(([k,f])=>`<div><b>${Math.round(t[f])} g</b><span>${k}</span></div>`).join('')}</div><div class="tipb">Hilangkan centang untuk membatalkan makanan dari catatan.</div>`
+   :`<div class="jt">Belum ada makanan yang dicentang. Pilih waktu makan, lalu centang makanan yang sudah kamu makan; semuanya tersimpan di sini.</div>`}`;
+}
 function draw4(){
   const N=needs(),t=eatenTot(),T=S.target,m=MEALS[mi],its=mealItems(mi),ck=S.chk[mi]||[],all=mealDone(mi);
   const pl={kcal:0,p:0,c:0,l:0,fi:0},gt={kcal:0,p:0,c:0,l:0,fi:0};
   its.forEach((x,j)=>{for(const k in pl){pl[k]+=x[k];if(ck[j])gt[k]+=x[k]}});
-  $('#mTabs').innerHTML=ORDER.map(i=>`<button class="tab ${i===mi?'on':''} ${S.eaten[i]?'done':''}" data-i="${i}">${MEALS[i].e} ${MEALS[i].k}<small>${mealKcal(i)}</small></button>`).join('');
-  $('#mCard').innerHTML=`<div class="mh"><div class="em">${m.e}</div><div><h3>${m.k}</h3><small>Anggaran ±${mealKcal(mi)} kkal · ${Math.round(m.share*100)}% dari targetmu</small></div><div class="kal">${S.mk[mi]||0} / ${mealKcal(mi)} kkal</div></div>
+  const nLog=ORDER.reduce((a,i)=>a+(S.chk[i]||[]).filter(Boolean).length,0);
+  $('#mTabs').innerHTML=ORDER.map(i=>`<button class="tab ${!logView&&i===mi?'on':''} ${S.eaten[i]?'done':''}" data-i="${i}">${MEALS[i].e} ${MEALS[i].k}<small>${mealKcal(i)}</small></button>`).join('')+
+   `<button class="tab log ${logView?'on':''}" data-i="log">✅ Sudah dimakan<span class="cnt">${nLog}</span></button>`;
+  $('#mCard').innerHTML=logView?logCard(t):`<div class="mh"><div class="em">${m.e}</div><div><h3>${m.k}</h3><small>Anggaran ±${mealKcal(mi)} kkal · ${Math.round(m.share*100)}% dari targetmu</small></div><div class="kal">${S.mk[mi]||0} / ${mealKcal(mi)} kkal</div></div>
    ${its.map((x,j)=>`<label class="ck ${ck[j]?'on':''}"><input type="checkbox" data-m="${mi}" data-j="${j}" ${ck[j]?'checked':''}><div><b>${x.F[0]} · ${x.M[0]}</b><small>${qs(x.q)} × ${x.F[2]} ≈ ${x.g} g · P ${Math.round(x.p)} · K ${Math.round(x.c)} · L ${Math.round(x.l)} · S ${Math.round(x.fi)} g</small></div><span>${x.kcal} kkal</span></label>`).join('')}
    <div class="sbh" style="margin:14px 0 8px">Gizi menu ini (dimakan / rencana)</div>
    <div class="mm" style="grid-template-columns:repeat(4,1fr)">${[['Protein','p'],['Karbo','c'],['Lemak','l'],['Serat','fi']].map(([n,k])=>`<div><b>${Math.round(gt[k])}/${Math.round(pl[k])} g</b><span>${n}</span></div>`).join('')}</div>
@@ -822,7 +900,7 @@ function draw4(){
 $('#c1').addEventListener('click',e=>{const b=e.target.closest('.nut');if(!b)return;selN=b.dataset.n;selId=SRC[selN][0];qry='';draw1();draw2();draw3()});
 $('#c2').addEventListener('input',e=>{if(e.target.id!=='q2')return;qry=e.target.value;$('#l2').innerHTML=list2()});
 $('#c2').addEventListener('click',e=>{const b=e.target.closest('.fd');if(!b)return;selId=b.dataset.f;$('#l2').innerHTML=list2();draw3()});
-$('#mTabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;mi=+b.dataset.i;draw4()});
+$('#mTabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;if(b.dataset.i==='log'){logView=true}else{logView=false;mi=+b.dataset.i}draw4()});
 $('#mCard').addEventListener('change',e=>{const c=e.target.closest('input[data-m]');if(!c)return;
   const i=+c.dataset.m,j=+c.dataset.j;S.chk[i]=S.chk[i]||[];S.chk[i][j]=c.checked;sync(i);save();draw4();
   if(c.checked)toast('Tercatat: '+mealItems(i)[j].F[0]+' ('+mealItems(i)[j].kcal+' kkal)')});
