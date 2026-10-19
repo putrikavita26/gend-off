@@ -409,6 +409,34 @@ body{
 .sd-it span{display:block;font-size:.74rem;font-weight:700;color:var(--faint)}
 .sd-it b{display:block;font-family:var(--mono);font-size:1.12rem;font-weight:600;color:var(--dark);margin-top:3px}
 
+/* ---------- Mode lingkar perut, tabel BMI, CTA defisit ---------- */
+.wmode{display:flex;gap:4px;padding:3px;border-radius:99px;background:var(--bg);border:1px solid var(--border);width:max-content;max-width:100%;flex-wrap:wrap}
+.wmode button{padding:6px 14px;border-radius:99px;font-size:.76rem;font-weight:700;color:var(--muted);transition:.25s}
+.wmode button.on{background:linear-gradient(135deg,var(--dark),var(--dark2));color:#fff}
+.field input.err{border-color:var(--red);box-shadow:0 0 0 3px rgba(216,69,46,.12)}
+.field input[readonly]{background:var(--tint);color:var(--dark);font-weight:600;cursor:not-allowed}
+.fhint{font-size:.76rem;color:var(--faint);line-height:1.5}
+.fhint.err{color:var(--red);font-weight:600}
+.fhint.ok{color:var(--green);font-weight:600}
+.note-ok{display:flex;gap:12px;padding:16px 18px;border-radius:14px;background:var(--green-bg);border:1px solid #bfe6cf;margin-bottom:18px}
+.note-ok.warn{background:var(--amber-bg);border-color:#f0dc9a}
+.note-ok b{display:block;color:var(--dark);font-size:.92rem;margin-bottom:2px}
+.note-ok p{font-size:.84rem;color:var(--muted)}
+.cta{padding:18px 20px;border-radius:14px;background:linear-gradient(135deg,var(--tint),#fff);border:1px solid var(--tint2);margin-bottom:18px}
+.cta-h{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.cta-h b{display:block;color:var(--dark);font-size:.95rem}.cta-h span{font-size:.8rem;color:var(--muted)}
+.cta-links{display:none;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.cta-links.show{display:grid;animation:fade .35s var(--ease)}
+.cta-links a{justify-content:center}
+.bmitbl{width:100%;border-collapse:collapse;font-size:.84rem}
+.bmitbl th{text-align:left;padding:10px 12px;background:var(--tint);color:var(--dark);font-size:.74rem;text-transform:uppercase;letter-spacing:.6px}
+.bmitbl td{padding:11px 12px;border-bottom:1px solid var(--border-soft);color:var(--muted)}
+.bmitbl td:first-child{color:var(--dark);font-weight:700}
+.bmitbl tr.me td{background:var(--tint);color:var(--dark);font-weight:700}
+.bmitbl tr.me td:last-child::after{content:" ← kamu";color:var(--olive)}
+.tblwrap{overflow-x:auto}
+@media(max-width:900px){.cta-links{grid-template-columns:1fr}}
+
 /* ---------- Tombol ---------- */
 .btn-p{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--dark),var(--dark2))}
 .btn-p::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.3),transparent);transform:skewX(-20deg);transition:left .6s}
@@ -593,7 +621,11 @@ body{
             <div class="field"><label>Usia (tahun)</label><input type="number" id="fU" placeholder="Mis. 22" min="15" max="80"></div>
             <div class="field"><label>Tinggi Badan (cm)</label><input type="number" id="fTB" placeholder="Mis. 165" min="100" max="250"></div>
             <div class="field"><label>Berat Badan (kg)</label><input type="number" step="0.1" id="fBB" placeholder="Mis. 75" min="20" max="300"></div>
-            <div class="field"><label>Lingkar Perut (cm)</label><input type="number" id="fW" placeholder="Mis. 90" min="40" max="200"></div>
+            <div class="field"><label>Lingkar Perut (cm)</label>
+              <div class="wmode" id="wMode"><button type="button" class="on" data-m="manual">Saya tahu (isi manual)</button><button type="button" data-m="auto">Tidak tahu (perkiraan)</button></div>
+              <input type="number" step="0.1" id="fW" placeholder="Mis. 90" min="40" max="200">
+              <div class="fhint" id="wHint">Ukur dengan meteran di sebatas pusar, setelah menghembuskan napas.</div>
+            </div>
             <div class="field"><label>Target Berat Badan (kg)</label><input type="number" step="0.1" id="fT" placeholder="Mis. 60" min="30" max="200"></div>
             <div class="field"><label>Tingkat Aktivitas Fisik</label><select id="fA"><option value="1.2">Sedentari (jarang olahraga)</option><option value="1.375" selected>Ringan (1–3 hari/minggu)</option><option value="1.55">Sedang (3–5 hari/minggu)</option><option value="1.725">Berat (6–7 hari/minggu)</option></select></div>
             <div class="field"><label>Riwayat Penyakit (opsional)</label><input type="text" id="fP" placeholder="Mis. asam lambung, hipertensi"></div>
@@ -601,6 +633,7 @@ body{
           </form>
         </div>
         <div class="card res" id="res"></div>
+        <div class="card" id="bmiRef" style="margin-top:18px"></div>
       </section>
 
       <!-- 3. MEAL -->
@@ -844,7 +877,7 @@ function renderLast(){
     <div class="lr-big"><span class="big">${dec(L.bmi,1)}</span><span class="badge" style="background:${L.cbg};color:${L.cfg};font-size:.86rem;padding:6px 16px">${L.cat}</span></div>
     <div class="kv">
       <div><span>Risiko kesehatan</span><b><i class="dot" style="background:${L.rcol}"></i>${L.risk}</b></div>
-      <div><span>Lingkar perut</span><b>${dec(L.wa,1)} cm</b></div>
+      <div><span>Lingkar perut</span><b>${dec(L.wa,1)} cm${L.we?' (perkiraan)':''}</b></div>
       <div><span>Target kalori</span><b>${fmt(L.tgt)} kkal/hari</b></div>
       <div><span>Estimasi capai target</span><b>${L.wk}</b></div>
     </div>
@@ -886,11 +919,68 @@ function renderIntv(){
     <div class="iv-st"><span class="tag">Kalori ${e>S.target?'melewati target':'masih aman'}</span><span class="tag">Air ${S.water}/8 gelas</span><span class="tag">Ceklist ${S.checks.filter(Boolean).length}/4</span></div>`;
 }
 
+/* ===== TABEL ATURAN BMI (Asia-Pasifik) ===== */
+const BMI_RULES=[
+ ['Kurus','< 18,5',false,'Tidak gemuk/obesitas. Tidak perlu defisit; fokus menambah berat badan sehat.'],
+ ['Normal (ideal)','18,5 – 22,9',false,'Tidak gemuk/obesitas. Tidak perlu defisit; jaga pola makan seimbang.'],
+ ['Overweight (gemuk)','23,0 – 24,9',true,'Perlu penanganan defisit kalori ringan (±500 kkal/hari).'],
+ ['Obesitas I','25,0 – 29,9',true,'Perlu penanganan defisit kalori dan olahraga rutin.'],
+ ['Obesitas II','≥ 30,0',true,'Perlu penanganan defisit kalori, olahraga bertahap, dan arahan tenaga kesehatan.']
+];
+const bmiRuleIdx=b=>b<18.5?0:b<23?1:b<25?2:b<30?3:4;
+function renderBmiRef(bmi){
+  const hi=bmi==null?-1:bmiRuleIdx(bmi);
+  $('#bmiRef').innerHTML=`<div class="card-h"><div><div class="card-t">Tabel Aturan BMI</div><div class="card-s">Defisit kalori hanya untuk kategori gemuk dan obesitas</div></div></div>
+   <div class="tblwrap"><table class="bmitbl"><tr><th>Kategori</th><th>BMI</th><th>Penanganan defisit</th><th>Aturan</th></tr>
+   ${BMI_RULES.map((r,i)=>`<tr class="${i===hi?'me':''}"><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]?'Diperlukan':'Tidak diperlukan'}</td><td>${r[3]}</td></tr>`).join('')}</table></div>`;
+}
+renderBmiRef(null);
+
+/* ===== LINGKAR PERUT: manual / perkiraan otomatis + validasi ===== */
+let wMode='manual';
+/* perkiraan kasar dari BMI & jenis kelamin (bukan hasil ukur) */
+const estWaist=(g,bmi)=>Math.round((2*bmi+(g==='L'?34:28))*2)/2;
+function waistRange(g,bmi,tb){
+  const e=estWaist(g,bmi);
+  return {e,min:Math.max(40,Math.round(e*.78)),max:Math.min(200,Math.round(e*1.22,0)),tb};
+}
+/* kembalikan pesan error, atau '' jika sesuai dengan TB & BB */
+function waistError(g,tb,bb,wa){
+  if(!tb||!bb)return 'Isi tinggi dan berat badan dulu agar lingkar perut bisa diperiksa.';
+  if(!wa)return 'Isi lingkar perut atau pilih perkiraan otomatis.';
+  const bmi=bb/Math.pow(tb/100,2),r=waistRange(g,bmi,tb);
+  if(wa<40||wa>200)return 'Lingkar perut harus antara 40–200 cm.';
+  if(wa/tb>0.9)return `Lingkar perut tidak masuk akal untuk tinggi ${tb} cm (maksimal ±${Math.round(tb*.9)} cm).`;
+  if(wa<r.min||wa>r.max)return `Tidak sesuai dengan TB ${tb} cm dan BB ${dec(bb,1)} kg (BMI ${dec(bmi,1)}). Rentang wajar sekitar ${r.min}–${r.max} cm. Ukur ulang atau pakai perkiraan.`;
+  return '';
+}
+function syncWaist(){
+  const g=$('#fG').value,tb=+$('#fTB').value,bb=+$('#fBB').value,inp=$('#fW'),h=$('#wHint');
+  inp.classList.remove('err');h.className='fhint';
+  if(wMode==='auto'){
+    inp.readOnly=true;
+    if(tb&&bb){const v=estWaist(g,bb/Math.pow(tb/100,2));inp.value=v;h.textContent='Perkiraan kasar dari BMI dan jenis kelamin. Hasil ukur dengan meteran lebih akurat.'}
+    else{inp.value='';inp.placeholder='Isi TB & BB dulu';h.textContent='Perkiraan dihitung otomatis setelah tinggi dan berat badan diisi.'}
+  }else{
+    inp.readOnly=false;inp.placeholder='Mis. 90';
+    const wa=+inp.value;
+    if(!wa){h.textContent='Ukur dengan meteran di sebatas pusar, setelah menghembuskan napas.'}
+    else{const er=waistError(g,tb,bb,wa);if(er){inp.classList.add('err');h.classList.add('err');h.textContent=er}else{h.classList.add('ok');h.textContent='Sesuai dengan tinggi dan berat badanmu.'}}
+  }
+}
+$('#wMode').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;wMode=b.dataset.m;
+  $$('#wMode button').forEach(x=>x.classList.toggle('on',x===b));
+  if(wMode==='manual')$('#fW').value='';syncWaist()});
+['fG','fTB','fBB','fW'].forEach(id=>$('#'+id).addEventListener('input',syncWaist));
+$('#fG').addEventListener('change',syncWaist);
+
 /* ===== DETEKSI (forward chaining) ===== */
 $('#btA').onclick=()=>{
+  syncWaist();
   const g=$('#fG').value,age=+$('#fU').value,tb=+$('#fTB').value,bb=+$('#fBB').value,wa=+$('#fW').value,goal=+$('#fT').value,af=+$('#fA').value,pen=$('#fP').value.toLowerCase();
   if(!age||!tb||!bb||!wa||!goal){toast('Lengkapi semua data wajib dulu ya');return}
-  const m=tb/100,bmi=bb/(m*m),c=cat(bmi),over=bmi>=23;
+  if(wMode==='manual'){const er=waistError(g,tb,bb,wa);if(er){toast('Periksa lingkar perut: '+er);$('#fW').focus();return}}
+  const m=tb/100,bmi=bb/(m*m),c=cat(bmi),over=bmi>=23,estW=wMode==='auto';
   const bmr=10*bb+6.25*tb-5*age+(g==='L'?5:-161),tdee=bmr*af,floor=g==='L'?1500:1200;
   const tgt=over?Math.max(floor,tdee-500):tdee,defisit=Math.round(tdee-tgt);
   const lim=g==='L'?90:80,risk=wa>=lim?(bmi>=25?['Tinggi','#d8452e']:['Sedang','#c97a10']):(bmi>=25?['Sedang','#c97a10']:['Rendah','#0f7a4f']);
@@ -899,14 +989,14 @@ $('#btA').onclick=()=>{
   S.tb=tb;S.bb=bb;S.goal=goal;S.target=Math.round(tgt);
   const td=new Date().toDateString(),l=S.weights[S.weights.length-1];if(l.d===td)l.w=bb;else S.weights.push({d:td,w:bb});
   const lw=S.waists[S.waists.length-1];if(lw.d===td)lw.w=wa;else S.waists.push({d:td,w:wa});
-  S.last={bmi,cat:c[0],cbg:c[1],cfg:c[2],risk:risk[0],rcol:risk[1],wk:wkTxt,wa,tgt:Math.round(tgt),d:td};save();
+  S.last={bmi,cat:c[0],cbg:c[1],cfg:c[2],risk:risk[0],rcol:risk[1],wk:wkTxt,wa,we:estW,tgt:Math.round(tgt),d:td};save();
   const adv=[];
   if(/lambung|maag|gerd/.test(pen))adv.push(['Asam lambung','Makan porsi kecil tapi sering, hindari pedas, asam, kopi, dan gorengan.']);
   if(/hipertensi|darah tinggi/.test(pen))adv.push(['Hipertensi','Batasi garam di bawah 5 g/hari, kurangi makanan olahan dan asin.']);
   if(/diabetes|gula/.test(pen))adv.push(['Gula darah','Pilih karbohidrat kompleks, hindari gula tambahan, atur jeda makan.']);
   if(/kolesterol/.test(pen))adv.push(['Kolesterol','Kurangi santan, jeroan, dan gorengan; perbanyak serat (oat, sayur).']);
   const rows=[
-   ['F','FAKTA',`${g==='L'?'Laki-laki':'Perempuan'}, ${age} th, TB <b>${tb} cm</b>, BB <b>${bb} kg</b>, perut <b>${wa} cm</b>.`],
+   ['F','FAKTA',`${g==='L'?'Laki-laki':'Perempuan'}, ${age} th, TB <b>${tb} cm</b>, BB <b>${bb} kg</b>, perut <b>${wa} cm</b>${estW?' (perkiraan)':''}.`],
    ['1','ATURAN 1 · BMI',`BB ÷ TB² = <b>${dec(bmi,1)}</b>`],
    ['2','ATURAN 2 · Klasifikasi',`Kategori <b>${c[0]}</b> (Asia-Pasifik).`],
    ['3','ATURAN 3 · Energi',`BMR <b>${fmt(bmr)}</b> × ${af} = TDEE <b>${fmt(tdee)}</b> kkal.`],
@@ -916,15 +1006,20 @@ $('#btA').onclick=()=>{
   R.innerHTML=`<div class="res-h"><div><div class="card-s" style="margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;font-weight:800">Hasil diagnosis sistem pakar</div><div style="display:flex;align-items:center;gap:14px"><span class="big" id="rB" data-v="0">0</span><span class="badge" style="background:${c[1]};color:${c[2]};font-size:.9rem;padding:6px 16px">${c[0]}</span></div></div>
     <div style="text-align:right"><div class="card-s">Perkiraan waktu capai target</div><b style="font-size:1.25rem;color:var(--dark)">${wkTxt}</b></div></div>
    <div class="chips4"><div class="chip4"><b>${fmt(bmr)}</b><span>BMR kkal</span></div><div class="chip4"><b>${fmt(tdee)}</b><span>TDEE kkal</span></div><div class="chip4"><b>${fmt(tgt)}</b><span>Target kkal/hari</span></div><div class="chip4"><b>${prot} g</b><span>Protein/hari</span></div></div>
+   ${over?`<div class="cta"><div class="cta-h"><div><b>Kategori ${c[0]}: penanganan defisit disarankan</b><span>Mulai program defisit kalori lewat planner gizi, olahraga, dan menu.</span></div><button type="button" class="btn btn-p" id="btDef">Mulai penanganan defisit</button></div>
+     <div class="cta-links" id="defLinks"><a class="btn btn-o" href="gizi_planner.php">Gizi Planner</a><a class="btn btn-o" href="olahraga_planner.php">Olahraga Planner</a><a class="btn btn-o" href="meal_planner.php">Meal Planner</a></div></div>`
+   :`<div class="note-ok ${bmi<18.5?'warn':''}"><div><b>${bmi<18.5?'Kamu tergolong kurus, bukan gemuk atau obesitas':'Berat badanmu ideal, tidak gemuk atau obesitas'}</b><p>BMI ${dec(bmi,1)} belum masuk kategori gemuk/obesitas pada tabel aturan BMI, jadi tidak memerlukan penanganan khusus defisit kalori.${bmi<18.5?' Fokus pada asupan bergizi untuk menaikkan berat badan secara sehat.':' Pertahankan pola makan seimbang dan aktivitas rutin.'}</p></div></div>`}
    <div class="fc"><div class="chain" id="chn">${rows.map((r,i)=>`<div class="nd ${i===rows.length-1?'fin':''}"><div class="dot">${r[0]}</div><div class="bx"><small>${r[1]}</small>${r[2]}</div></div>`).join('')}</div>
    <ul class="rlist"><li style="border-left-color:${risk[1]}"><strong>Risiko kesehatan: <span style="color:${risk[1]}">${risk[0]}</span></strong>${wa>=lim?`Lingkar perut melewati batas aman (${lim} cm).`:'Lingkar perut masih dalam batas aman.'}</li>
-    <li><strong>Olahraga</strong>Kardio (jalan cepat/sepeda) 30 menit/hari dan latihan beban ringan 2× seminggu.</li>
+    ${over?`<li><strong>Olahraga</strong>Kardio (jalan cepat/sepeda) 30 menit/hari dan latihan beban ringan 2× seminggu.</li>
     <li><strong>Makanan &amp; gizi</strong>Perbanyak serat (bayam, brokoli), protein tanpa lemak (dada ayam, tahu, tempe).</li>
-    <li><strong>Pengolahan makanan</strong>Kurangi deep frying; utamakan direbus, dikukus, dipanggang, atau ditumis sedikit minyak.</li>
+    <li><strong>Pengolahan makanan</strong>Kurangi deep frying; utamakan direbus, dikukus, dipanggang, atau ditumis sedikit minyak.</li>`
+    :`<li><strong>Tanpa program defisit</strong>${bmi<18.5?'Naikkan asupan bergizi (kacang, telur, ikan, susu) dan latihan beban ringan.':'Cukup jaga gizi seimbang, olahraga ringan rutin, dan pantau berat badan berkala.'}</li>`}
     ${adv.map(a=>`<li style="border-left-color:#f5b82e"><strong>${a[0]}</strong>${a[1]}</li>`).join('')}
     <li style="border-left-color:#f5b82e"><strong>Catatan</strong>Jika hamil, menyusui, atau punya penyakit tertentu, konsultasikan dulu dengan dokter atau ahli gizi.</li></ul></div>`;
   R.classList.remove('show');void R.offsetWidth;R.classList.add('show');
-  countTo($('#rB'),bmi,1,900);
+  countTo($('#rB'),bmi,1,900);renderBmiRef(bmi);
+  const bd=$('#btDef');if(bd)bd.onclick=()=>$('#defLinks').classList.toggle('show');
   $$('#chn .nd').forEach((n,i)=>setTimeout(()=>n.classList.add('on'),250+i*500));
   setTimeout(()=>R.scrollIntoView({behavior:'smooth',block:'start'}),120);
   toast(`Target ${fmt(tgt)} kkal diterapkan ke dashboard`);
