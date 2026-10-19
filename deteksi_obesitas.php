@@ -425,7 +425,7 @@ body{
 .cta{padding:18px 20px;border-radius:14px;background:linear-gradient(135deg,var(--tint),#fff);border:1px solid var(--tint2);margin-bottom:18px}
 .cta-h{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .cta-h b{display:block;color:var(--dark);font-size:.95rem}.cta-h span{font-size:.8rem;color:var(--muted)}
-.cta-links{display:none;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.cta-links{display:none;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
 .cta-links.show{display:grid;animation:fade .35s var(--ease)}
 .cta-links a{justify-content:center}
 .cta-links a.btn{background:linear-gradient(135deg,var(--dark),var(--dark2));color:#fff;border:0;box-shadow:0 8px 16px -8px rgba(11,59,54,.5);transition:transform .25s var(--ease),box-shadow .25s,filter .25s}
@@ -567,6 +567,7 @@ const ICON={
  chat:sv('<path d="M21 12a8 8 0 01-11.6 7.1L3 21l1.9-5.6A8 8 0 1121 12z"/>'),
  book:sv('<path d="M4 4h6a3 3 0 013 3v13a2 2 0 00-2-2H4z"/><path d="M20 4h-6a3 3 0 00-3 3v13a2 2 0 012-2h7z"/>'),
  file:sv('<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/>'),
+ dumb:sv('<path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/>'),
  user:sv('<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>'),
  fire:sv('<path d="M12 22c4 0 7-3 7-7 0-3-2-5-3-7-1 2-2 3-3 3 0-4-2-7-4-9 0 4-4 6-4 12 0 4 3 8 7 8z"/>'),
  scale:sv('<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 9a4 4 0 018 0"/><path d="M12 9l2-2"/>'),
@@ -578,7 +579,7 @@ const ICON={
 /* navigasi: Deteksi = halaman ini, lainnya kembali ke dashboard.php */
 const NAV=[
  {g:'Utama',items:[['dashboard','Dashboard','grid','dashboard.php']]},
- {g:'Pemeriksaan & Menu',items:[['deteksi','Deteksi Obesitas','pulse','deteksi_obesitas.php'],['gizi','Gizi Planner','salad','gizi_planner.php']]},
+ {g:'Pemeriksaan & Menu',items:[['deteksi','Deteksi Obesitas','pulse','deteksi_obesitas.php'],['gizi','Gizi Planner','salad','gizi_planner.php'],['olahraga','Olahraga','dumb','olahraga_planner.php']]},
  {g:'Konsultasi & Belajar',items:[['chatbot','Konsultasi AI','chat','dashboard.php#chatbot'],['edukasi','Edukasi Pengguna','book','dashboard.php#edukasi']]},
  {g:'Laporan & Akun',items:[['ekspor','Ekspor Laporan','file','dashboard.php#ekspor'],['profil','Kelola Profil','user','dashboard.php#profil']]}
 ];
@@ -701,7 +702,7 @@ $('#btA').onclick=()=>{
     <div style="text-align:right"><div class="card-s">Perkiraan waktu capai target</div><b style="font-size:1.25rem;color:var(--dark)">${wkTxt}</b></div></div>
    <div class="chips4"><div class="chip4"><b>${fmt(bmr)}</b><span>BMR kkal</span></div><div class="chip4"><b>${fmt(tdee)}</b><span>TDEE kkal</span></div><div class="chip4"><b>${fmt(tgt)}</b><span>Target kkal/hari</span></div><div class="chip4"><b>${prot} g</b><span>Protein/hari</span></div></div>
    ${over?`<div class="cta"><div class="cta-h"><div><b>Kategori ${c[0]}: penanganan defisit disarankan</b><span>Mulai program defisit kalori lewat planner gizi, olahraga, dan menu.</span></div><button type="button" class="btn btn-p" id="btDef">Mulai penanganan defisit</button></div>
-     <div class="cta-links" id="defLinks"><a class="btn btn-o" href="gizi_planner.php">Gizi Planner</a><a class="btn btn-o" href="olahraga_planner.php">Olahraga Planner</a><a class="btn btn-o" href="meal_planner.php">Meal Planner</a></div></div>`
+     <div class="cta-links" id="defLinks"><a class="btn btn-o" href="gizi_planner.php">Gizi Planner</a><a class="btn btn-o" href="olahraga_planner.php">Olahraga Planner</a></div></div>`
    :`<div class="note-ok ${bmi<18.5?'warn':''}"><div><b>${bmi<18.5?'Kamu tergolong kurus, bukan gemuk atau obesitas':'Berat badanmu ideal, tidak gemuk atau obesitas'}</b><p>BMI ${dec(bmi,1)} belum masuk kategori gemuk/obesitas pada tabel aturan BMI, jadi tidak memerlukan penanganan khusus defisit kalori.${bmi<18.5?' Fokus pada asupan bergizi untuk menaikkan berat badan secara sehat.':' Pertahankan pola makan seimbang dan aktivitas rutin.'}</p></div></div>`}
    <div class="fc"><div class="chain" id="chn">${rows.map((r,i)=>`<div class="nd ${i===rows.length-1?'fin':''}"><div class="dot">${r[0]}</div><div class="bx"><small>${r[1]}</small>${r[2]}</div></div>`).join('')}</div>
    <ul class="rlist"><li style="border-left-color:${risk[1]}"><strong>Risiko kesehatan: <span style="color:${risk[1]}">${risk[0]}</span></strong>${wa>=lim?`Lingkar perut melewati batas aman (${lim} cm).`:'Lingkar perut masih dalam batas aman.'}</li>
