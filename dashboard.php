@@ -348,19 +348,21 @@ body{
     linear-gradient(135deg,var(--dark2) 0%,var(--dark) 60%,var(--dark3) 100%);
   border:1px solid rgba(255,255,255,.08);box-shadow:0 26px 50px -26px rgba(6,34,31,.65);
 }
-.hero-txt{position:relative;z-index:1;max-width:560px}
+.hero-txt{position:relative;z-index:2;max-width:560px}
 .hero-card h1{font-family:inherit;font-weight:800;font-size:clamp(1.6rem,2.8vw,2.2rem);letter-spacing:-.4px;line-height:1.2;color:#fff;margin-bottom:8px}
 .hero-card p{color:rgba(255,255,255,.8);font-size:.92rem;max-width:470px;margin-bottom:20px}
+.hero-vid{position:absolute;top:0;right:0;width:54%;height:100%;object-fit:cover;object-position:center 8%;z-index:0;pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.55) 30%,#000 62%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.55) 30%,#000 62%)}
+.hero-card::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,transparent 40%,rgba(11,59,54,.42) 100%)}
+.hero-txt{z-index:2}
+.hmeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.hm{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);font-size:.76rem;font-weight:600;color:rgba(255,255,255,.85)}
+.hm b{font-family:var(--mono);font-weight:600;color:var(--lime)}
 .hero-btns{display:flex;gap:10px;flex-wrap:wrap}
 .btn-l{background:linear-gradient(135deg,var(--olive),var(--lime));color:var(--dark);box-shadow:0 10px 22px rgba(0,0,0,.25)}
 .btn-l:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(0,0,0,.3)}
 .btn-g{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);color:#fff}
 .btn-g:hover{background:rgba(255,255,255,.2)}
-.hero-side{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:12px;min-width:290px}
-.hchip{padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);transition:background .3s}
-.hchip:hover{background:rgba(255,255,255,.12)}
-.hchip b{display:block;font-family:var(--mono);font-size:1.5rem;font-weight:600;color:var(--lime);line-height:1.1}
-.hchip span{font-size:.74rem;font-weight:600;color:rgba(255,255,255,.76)}
 
 
 /* ---------- Jam real time ---------- */
@@ -459,7 +461,7 @@ body{
   .ring-w{flex-direction:column;align-items:flex-start}
 }
 @media(max-width:560px){.g4{grid-template-columns:1fr}.msg{max-width:92%}}
-@media(max-width:900px){.iv-grid{grid-template-columns:1fr}.clk small,.clk-ic{display:none}.clk{padding:8px 12px}.sd-grid{grid-template-columns:1fr 1fr}.hero-card{padding:24px 20px}.hero-side{min-width:0;width:100%}.sec-h h1{font-size:1.4rem}}
+@media(max-width:900px){.hero-vid{width:100%;opacity:.28}.iv-grid{grid-template-columns:1fr}.clk small,.clk-ic{display:none}.clk{padding:8px 12px}.sd-grid{grid-template-columns:1fr 1fr}.hero-card{padding:24px 20px}.hero-side{min-width:0;width:100%}.sec-h h1{font-size:1.4rem}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.cl{stroke-dashoffset:0!important}.ca,.cd{opacity:1!important}}
 </style>
 </head>
@@ -495,17 +497,15 @@ body{
       <!-- 1. DASHBOARD -->
       <section class="page active" id="page-dashboard">
         <div class="hero-card">
+          <video class="hero-vid" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/running.mp4" type="video/mp4"></video>
           <div class="hero-txt">
             <h1><span id="greet">Halo</span>, <?= $username ?></h1>
             <p>Pantau progres defisit kalorimu hari ini. Sedikit demi sedikit, yang penting konsisten.</p>
+            <div class="hmeta"><span class="hm">Target <b id="hTgt">0</b> kkal/hari</span><span class="hm">Ceklist <b id="hCk">0/4</b> selesai</span></div>
             <div class="hero-btns">
               <button class="btn btn-l" data-go="mealplan">Buka planner</button>
               <button class="btn btn-g" data-go="deteksi">Hitung target kalori</button>
             </div>
-          </div>
-          <div class="hero-side">
-            <div class="hchip"><b id="hTgt">0</b><span>Target kkal per hari</span></div>
-            <div class="hchip"><b id="hCk">0/4</b><span>Ceklist selesai</span></div>
           </div>
         </div>
 
@@ -1016,6 +1016,7 @@ function tick(){const n=new Date();
   $('#clkT').textContent=n.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).replace(/\./g,':');
   $('#clkD').textContent=n.toLocaleDateString('id-ID',{weekday:'long',day:'2-digit',month:'long',year:'numeric'})}
 tick();setInterval(tick,1000);
+if(matchMedia('(prefers-reduced-motion:reduce)').matches){const hv=$('.hero-vid');if(hv)hv.pause()}
 $('#tbT').textContent=META.dashboard[0];$('#tbS').textContent=META.dashboard[1];
 addMsg(`Halo ${esc($('#uName').textContent)}! 👋 Saya asisten pakar gizimu. Ada yang ingin ditanyakan soal diet defisit kalori hari ini?`,'b');
 renderAll();stagger('dashboard');
