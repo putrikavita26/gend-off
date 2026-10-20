@@ -174,7 +174,7 @@ const ICON={
 };
 const NAV=[
  {g:'Utama',items:[['dashboard','Dashboard','grid','dashboard.php']]},
- {g:'Pemeriksaan & Menu',items:[['deteksi','Deteksi Obesitas','pulse','deteksi_obesitas.php'],['gizi','Gizi Planner','salad','gizi_planner.php'],['olahraga','Olahraga','dumb','olahraga.php']]},
+ {g:'Pemeriksaan & Menu',items:[['deteksi','Deteksi Obesitas','pulse','deteksi_obesitas.php'],['gizi','Gizi Planner','salad','gizi_planner.php'],['olahraga','Olahraga','dumb','olahraga_planner.php']]},
  {g:'Konsultasi & Belajar',items:[['chatbot','Konsultasi AI','chat','chatbot.php'],['edukasi','Edukasi Pengguna','book','edukasi_pengguna.php']]},
  {g:'Laporan & Akun',items:[['ekspor','Ekspor Laporan','file','dashboard.php#ekspor'],['profil','Kelola Profil','user','dashboard.php#profil']]}
 ];

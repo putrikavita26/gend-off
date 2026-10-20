@@ -617,7 +617,7 @@ const NAV=[
  {g:'Konsultasi & Belajar',items:[['chatbot','Konsultasi AI','chat','Tanya jawab seputar diet dan gizi'],['edukasi','Edukasi Pengguna','book','Artikel gizi dan gaya hidup sehat']]},
  {g:'Laporan & Akun',items:[['ekspor','Ekspor Laporan','file','Unduh riwayat progres dalam PDF atau Excel'],['profil','Kelola Profil','user','Data akun dan preferensi']]}
 ];
-const LINKS={deteksi:'deteksi_obesitas.php',gizi:'gizi_planner.php',olahraga:'olahraga.php',chatbot:'chatbot.php',edukasi:'edukasi_pengguna.php',profil:'profil.php'};
+const LINKS={deteksi:'deteksi_obesitas.php',gizi:'gizi_planner.php',olahraga:'olahraga_planner.php',chatbot:'chatbot.php',edukasi:'edukasi_pengguna.php',profil:'profil.php'};
 $('#nav').innerHTML=NAV.map(n=>`<div class="nav-label">${n.g}</div>`+n.items.map(i=>LINKS[i[0]]?`<a class="nav-item" href="${LINKS[i[0]]}"><span class="ic">${ICON[i[2]]}</span>${i[1]}</a>`:`<button class="nav-item${i[0]==='dashboard'?' active':''}" data-target="${i[0]}"><span class="ic">${ICON[i[2]]}</span>${i[1]}</button>`).join('')).join('');
 const META={};NAV.forEach(n=>n.items.forEach(i=>META[i[0]]=[i[1],i[3]]));
 $$('#nav > *').forEach((e,i)=>e.style.setProperty('--i',i));
