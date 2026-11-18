@@ -5,19 +5,8 @@ session_start();
 if (isset($_SESSION['user_id'])) { header('Location: dashboard.php'); exit; }
 if (empty($_SESSION['csrf'])) $_SESSION['csrf'] = bin2hex(random_bytes(16));
 
-/**
- * KERANGKA: ganti isi fungsi ini dengan INSERT ke Supabase / database.
- * - Cek dulu apakah username / email sudah dipakai.
- * - Simpan kata sandi dengan password_hash($password, PASSWORD_DEFAULT), JANGAN simpan teks asli.
- * Kembalikan ['ok'=>true] jika berhasil, atau ['ok'=>false,'error'=>'pesan','field'=>'username|email'] jika gagal.
- * Contoh bawaan di bawah hanya untuk uji tampilan.
- */
-function daftar_user($username, $email, $password) {
-  $hash = password_hash($password, PASSWORD_DEFAULT); // simpan $hash ke database
-  if (strtolower($username) === 'demo') return ['ok'=>false,'error'=>'Username sudah dipakai, coba yang lain.','field'=>'username'];
-  if (strtolower($email) === 'demo@gend-off.test') return ['ok'=>false,'error'=>'Email sudah terdaftar. Silakan masuk.','field'=>'email'];
-  return ['ok'=>true];
-}
+// Fungsi daftar_user() ada di supabase.php (Supabase Auth + tabel profil_user).
+require_once __DIR__ . '/supabase.php';
 
 $error = ''; $errField = ''; $username = ''; $email = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

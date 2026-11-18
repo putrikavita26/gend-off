@@ -5,18 +5,8 @@ session_start();
 if (isset($_SESSION['user_id'])) { header('Location: dashboard.php'); exit; }
 if (empty($_SESSION['csrf'])) $_SESSION['csrf'] = bin2hex(random_bytes(16));
 
-/**
- * KERANGKA: ganti isi fungsi ini dengan query ke Supabase / database.
- * Harus mengembalikan array ['id'=>..., 'username'=>...] jika cocok, atau null jika salah.
- * Gunakan password_verify() untuk membandingkan hash kata sandi.
- * Akun demo di bawah hanya untuk uji tampilan — HAPUS sebelum dipakai sungguhan.
- */
-function cek_login($identity, $password) {
-  if (in_array(strtolower($identity), ['demo', 'demo@gend-off.test'], true) && $password === 'demo1234') {
-    return ['id' => 0, 'username' => 'demo'];
-  }
-  return null;
-}
+// Fungsi cek_login() ada di supabase.php (Supabase Auth). Akun demo sudah dihapus.
+require_once __DIR__ . '/supabase.php';
 
 $error = ''; $identity = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -32,9 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       session_regenerate_id(true);
       $_SESSION['user_id'] = $user['id'];
       $_SESSION['username'] = $user['username'];
+      $_SESSION['email']    = $user['email'];
+      sb_session_store($user['session']);   // token Supabase hanya disimpan di sesi server
       header('Location: dashboard.php'); exit;
     }
-    $error = 'Username/email atau kata sandi salah.';
+    $error = $GLOBALS['sb_login_error'] ?? 'Username/email atau kata sandi salah.';
   }
 }
 ?>

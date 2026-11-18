@@ -2,10 +2,56 @@
 // GEND-OFF — Konsultasi AI (halaman terpisah dari dashboard)
 // Letakkan di: htdocs/gend-off/chatbot.php | aset di: assets/
 session_start();
+require_once __DIR__ . '/gend_core.php';
 
 // Halaman ini hanya untuk pengguna yang sudah login
 if (!isset($_SESSION['user_id'])) { header('Location: login.php'); exit; }
 
+const CHATBOT_FEATURE_ENABLED = false;
+if (!CHATBOT_FEATURE_ENABLED) {
+?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konsultasi AI Segera Hadir — GEND-OFF</title>
+<link rel="icon" href="assets/logo.png">
+<style>
+*{box-sizing:border-box}
+body{min-height:100vh;margin:0;padding:24px;display:grid;place-items:center;background:#f6f8f4;color:#14302c;font-family:Arial,sans-serif}
+main{width:min(100%,560px);padding:40px;border:1px solid #e6ebe0;border-radius:20px;background:#fff;box-shadow:0 12px 40px rgba(11,59,54,.08);text-align:center}
+.brand{display:block;margin:0 auto 28px;width:62px;height:62px}
+.icon{width:64px;height:64px;margin:0 auto 18px;display:grid;place-items:center;border-radius:20px;background:#f1f6e4;font-size:30px}
+.badge{display:inline-block;padding:6px 12px;border-radius:99px;background:#f1f6e4;color:#41600e;font-size:12px;font-weight:700}
+h1{margin:16px 0 10px;color:#0b3b36;font-size:28px}
+p{margin:0;color:#5d716d;line-height:1.7}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+a{padding:11px 16px;border:1px solid #e6ebe0;border-radius:10px;color:#14302c;font-size:14px;font-weight:700;text-decoration:none}
+a.primary{border-color:#0b3b36;background:#0b3b36;color:#fff}
+a:hover{filter:brightness(.96)}
+@media(max-width:480px){main{padding:30px 22px}h1{font-size:24px}}
+</style>
+</head>
+<body>
+<main>
+  <img class="brand" src="assets/logo.png" alt="Logo GEND-OFF">
+  <div class="icon" aria-hidden="true">🤖</div>
+  <span class="badge">Segera Hadir</span>
+  <h1>Konsultasi AI sedang disiapkan</h1>
+  <p>Fitur ini sedang kami kembangkan dan belum tersedia. Kami akan mengumumkannya saat siap digunakan.</p>
+  <div class="actions">
+    <a class="primary" href="dashboard.php">Kembali ke Dashboard</a>
+    <a href="edukasi_pengguna.php">Lihat Edukasi Gizi</a>
+  </div>
+</main>
+</body>
+</html>
+<?php
+exit;
+}
+
+$csrf = gend_csrf();
 $username = htmlspecialchars($_SESSION['username'] ?? 'Faaiz');
 $inisial  = htmlspecialchars(mb_strtoupper(mb_substr($_SESSION['username'] ?? 'F', 0, 1)));
 $tahun    = date('Y');
@@ -155,20 +201,18 @@ h1{font-weight:800;color:var(--dark);line-height:1.2}
     <main class="content">
       <div class="sec-h"><h1>Konsultasi AI</h1><p>Tanyakan apa saja seputar diet, kalori, olahraga, dan gaya hidup sehat.</p></div>
       <div class="chat">
-        <div class="chat-h"><div class="bot">🤖</div><div><b>Asisten Gizi GEND-OFF</b><small>● Online · siap membantu</small></div></div>
+        <div class="chat-h"><div class="bot">🤖</div><div><b>Asisten Gizi GEND-OFF</b><small>● Groq AI · siap membantu</small></div></div>
         <div class="chat-box" id="chatBox"></div>
         <div class="qc" id="qc"></div>
-        <form class="chat-in" id="chatF"><input type="text" id="chatI" placeholder="Ketik pertanyaanmu di sini..." autocomplete="off"><button type="submit">Kirim</button></form>
+        <form class="chat-in" id="chatF"><input type="text" id="chatI" placeholder="Ketik pertanyaanmu di sini..." autocomplete="off" maxlength="2000"><button type="submit">Kirim</button></form>
       </div>
     </main>
   </div>
 </div>
 
 <script>
+const CHAT_CSRF=<?= json_encode($csrf, JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT) ?>;
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const fmt=n=>Math.round(n).toLocaleString('id-ID');
-const dec=(n,d=1)=>n.toFixed(d).replace('.',',');
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const sv=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
 const ICON={
  grid:sv('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>'),
@@ -183,7 +227,7 @@ const ICON={
 const NAV=[
  {g:'Utama',items:[['dashboard','Dashboard','grid','dashboard.php']]},
  {g:'Pemeriksaan & Menu',items:[['deteksi','Deteksi Obesitas','pulse','deteksi_obesitas.php'],['gizi','Gizi Planner','salad','gizi_planner.php'],['olahraga','Olahraga','dumb','olahraga.php']]},
- {g:'Konsultasi & Belajar',items:[['chatbot','Konsultasi AI','chat','chatbot.php'],['edukasi','Edukasi Pengguna','book','edukasi_pengguna.php']]},
+ {g:'Belajar',items:[['edukasi','Edukasi Pengguna','book','edukasi_pengguna.php']]},
  {g:'Laporan & Akun',items:[['ekspor','Ekspor Laporan','file','dashboard.php#ekspor'],['profil','Kelola Profil','user','profil.php']]}
 ];
 $('#nav').innerHTML=NAV.map(n=>`<div class="nav-label">${n.g}</div>`+n.items.map(i=>`<a class="nav-item${i[0]==='chatbot'?' active':''}" href="${i[3]}"><span class="ic">${ICON[i[2]]}</span>${i[1]}</a>`).join('')).join('');
@@ -191,37 +235,36 @@ const side=$('#sidebar'),scrim=$('#scrim');
 function closeSide(){side.classList.remove('open');scrim.classList.remove('show')}
 $('#burger').onclick=()=>{side.classList.add('open');scrim.classList.add('show')};scrim.onclick=closeSide;
 
-/* ===== DATA PENGGUNA (tersinkron dengan dashboard) ===== */
-let S={};
-try{S=JSON.parse(localStorage.getItem('gendoff_dash_v3')||'{}')||{}}catch(e){S={}}
-S=Object.assign({target:1600,tb:170,bb:70.8,goal:65,water:0},S);
-const bmiNow=()=>S.bb/Math.pow(S.tb/100,2);
-const cat=b=>b<18.5?'Kurus':b<23?'Normal':b<25?'Overweight':b<30?'Obesitas I':'Obesitas II';
-
-/* ===== CHATBOT (berbasis aturan) ===== */
-const RULES=[
- [/gorengan|goreng/,()=>`Secara teknis boleh, selama total kalorinya masih masuk target harianmu (${fmt(S.target)} kkal). Tapi gorengan padat kalori dan minim gizi, jadi batasi 1–2 potong seminggu dan imbangi dengan sayur.`],
- [/nasi|karbo|karbohidrat/,()=>'Karbohidrat bukan musuh. Pilih yang kompleks seperti nasi merah, ubi, atau oat dengan porsi 80–150 g per makan dan perbanyak sayur.'],
- [/minum|air|hidrasi/,()=>'Targetkan sekitar 2 liter (8 gelas) per hari. Minum segelas sebelum makan juga membantu kenyang lebih cepat.'],
- [/olahraga|latihan|jalan|cardio|kardio/,()=>'Kombinasikan jalan cepat atau sepeda 30 menit/hari dengan latihan beban ringan 2× seminggu. Program olahraga di rumah yang disesuaikan dengan kondisimu ada di menu Olahraga.'],
- [/kalori|target|defisit/,()=>`Target harianmu saat ini ${fmt(S.target)} kkal (defisit sekitar 500 kkal dari kebutuhan energi). Defisit moderat lebih aman dan bisa dipertahankan.`],
- [/bmi|obesitas|berat/,()=>`BMI-mu sekarang ${dec(bmiNow(),1)} (${cat(bmiNow())}, standar Asia-Pasifik). Untuk analisis lengkap, buka menu Deteksi Obesitas.`],
- [/lapar|ngemil|camilan|snack/,()=>'Kalau lapar di sela makan, pilih camilan utuh: buah, yoghurt plain, atau segenggam almond. Serat dan protein membuat kenyang lebih lama.'],
- [/lambung|maag|gerd/,()=>'Untuk asam lambung: makan porsi kecil tapi sering, hindari pedas, asam, kopi, dan gorengan.'],
- [/protein|otot/,()=>'Protein menjaga massa otot saat defisit. Sumber bagus: telur, ikan, dada ayam, tempe, dan tahu di setiap waktu makan.'],
- [/malam/,()=>'Makan malam boleh pakai nasi. Atur porsi 80–100 g, perbanyak sayur, dan beri jeda 2–3 jam sebelum tidur.'],
- [/sarapan/,()=>'Sarapan berprotein (telur, tempe) plus serat membantu kenyang sampai siang dan menjaga energi.'],
- [/tidur/,()=>'Tidur 7–8 jam membantu mengatur hormon lapar. Kurang tidur sering memicu keinginan ngemil.'],
- [/terima kasih|makasih|thanks/,()=>'Sama-sama! Semangat terus ya 💪'],
- [/halo|hai|hi\b|hello/,()=>`Halo ${$('#uName').textContent}! Mau tanya soal diet, kalori, atau olahraga?`]
-];
 const QS=['Boleh makan gorengan?','Berapa target kalorinya?','Tips biar nggak lapar','Berapa air yang harus diminum?','Olahraga apa yang cocok?'];
 const box=$('#chatBox');
+const chatHistory=[];
+let sending=false;
 function addMsg(t,w,html){const d=document.createElement('div');d.className='msg '+w;if(html)d.innerHTML=t;else d.textContent=t;box.appendChild(d);box.scrollTop=box.scrollHeight;return d}
-function ask(q){
-  if(!q.trim())return;addMsg(q,'u');$('#chatI').value='';
-  const t=addMsg('<span class="dots"><i></i><i></i><i></i></span>','b',true);
-  setTimeout(()=>{const r=RULES.find(x=>x[0].test(q.toLowerCase()));t.textContent=r?r[1]():'Saya belum punya jawaban pasti untuk itu. Coba tanyakan soal kalori, air minum, olahraga, protein, atau camilan. Untuk kondisi medis tertentu, konsultasikan ke dokter atau ahli gizi.';box.scrollTop=box.scrollHeight},700+Math.random()*400);
+async function ask(q){
+  q=q.trim();
+  if(!q||sending)return;
+  sending=true;
+  const input=$('#chatI'),send=$('#chatF button');
+  addMsg(q,'u');input.value='';input.disabled=true;send.disabled=true;
+  if(chatHistory.length>=12)chatHistory.splice(0,2);
+  chatHistory.push({role:'user',content:q});
+  const typing=addMsg('<span class="dots"><i></i><i></i><i></i></span>','b',true);
+  try{
+    const response=await fetch('api_chatbot.php',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-CSRF-Token':CHAT_CSRF},
+      body:JSON.stringify({messages:chatHistory})
+    });
+    const data=await response.json();
+    if(!response.ok||!data.ok)throw new Error(data.error||'Jawaban AI tidak dapat dimuat. Coba lagi.');
+    typing.textContent=data.reply;
+    chatHistory.push({role:'assistant',content:data.reply});
+  }catch(error){
+    typing.textContent=error.message||'Tidak dapat menghubungi AI. Coba lagi.';
+    chatHistory.pop();
+  }finally{
+    sending=false;input.disabled=false;send.disabled=false;input.focus();box.scrollTop=box.scrollHeight;
+  }
 }
 $('#chatF').onsubmit=e=>{e.preventDefault();ask($('#chatI').value)};
 $('#qc').innerHTML=QS.map(q=>`<button type="button">${q}</button>`).join('');

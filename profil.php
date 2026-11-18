@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) { header('Location: login.php'); exit; }
 
 $username = htmlspecialchars($_SESSION['username'] ?? 'Faaiz');
 $inisial  = htmlspecialchars(mb_strtoupper(mb_substr($_SESSION['username'] ?? 'F', 0, 1)));
-$email    = htmlspecialchars(strtolower($_SESSION['username'] ?? 'faaiz') . '@gend-off.com');
+$email    = htmlspecialchars($_SESSION['email'] ?? '');
 $tahun    = date('Y');
 ?>
 <!DOCTYPE html>
@@ -251,7 +251,7 @@ const ICON={
 const NAV=[
  {g:'Utama',items:[['dashboard','Dashboard','grid','dashboard.php']]},
  {g:'Pemeriksaan & Menu',items:[['deteksi','Deteksi Obesitas','pulse','deteksi_obesitas.php'],['gizi','Gizi Planner','salad','gizi_planner.php'],['olahraga','Olahraga','dumb','olahraga_planner.php']]},
- {g:'Konsultasi & Belajar',items:[['chatbot','Konsultasi AI','chat','chatbot.php'],['edukasi','Edukasi Pengguna','book','edukasi_pengguna.php']]},
+ {g:'Belajar',items:[['edukasi','Edukasi Pengguna','book','edukasi_pengguna.php']]},
  {g:'Laporan & Akun',items:[['ekspor','Ekspor Laporan','file','dashboard.php#ekspor'],['profil','Kelola Profil','user','profil.php']]}
 ];
 $('#nav').innerHTML=NAV.map(n=>`<div class="nav-label">${n.g}</div>`+n.items.map(i=>`<a class="nav-item${i[0]==='profil'?' active':''}" href="${i[3]}"><span class="ic">${ICON[i[2]]}</span>${i[1]}</a>`).join('')).join('');

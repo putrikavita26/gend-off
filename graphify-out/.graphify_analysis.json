@@ -1,0 +1,573 @@
+{
+  "communities": {
+    "0": [
+      "gizi_planner",
+      "gizi_planner_all",
+      "gizi_planner_closeside",
+      "gizi_planner_countto",
+      "gizi_planner_dec",
+      "gizi_planner_draw1",
+      "gizi_planner_draw2",
+      "gizi_planner_draw3",
+      "gizi_planner_draw4",
+      "gizi_planner_drawtop",
+      "gizi_planner_eatentot",
+      "gizi_planner_esc",
+      "gizi_planner_extra",
+      "gizi_planner_fmt",
+      "gizi_planner_food",
+      "gizi_planner_gh",
+      "gizi_planner_icon",
+      "gizi_planner_itemof",
+      "gizi_planner_list2",
+      "gizi_planner_load",
+      "gizi_planner_logcard",
+      "gizi_planner_mealdone",
+      "gizi_planner_mealitems",
+      "gizi_planner_mealkcal",
+      "gizi_planner_meals",
+      "gizi_planner_meth",
+      "gizi_planner_meths",
+      "gizi_planner_nav",
+      "gizi_planner_needs",
+      "gizi_planner_order",
+      "gizi_planner_qs",
+      "gizi_planner_rowf",
+      "gizi_planner_save",
+      "gizi_planner_scrim",
+      "gizi_planner_side",
+      "gizi_planner_src",
+      "gizi_planner_stagger",
+      "gizi_planner_sv",
+      "gizi_planner_sync",
+      "gizi_planner_th",
+      "gizi_planner_tick",
+      "gizi_planner_tip",
+      "gizi_planner_toast",
+      "gizi_planner_vk"
+    ],
+    "1": [
+      "dashboard",
+      "dashboard_addwaist",
+      "dashboard_bminow",
+      "dashboard_cat",
+      "dashboard_closeside",
+      "dashboard_countto",
+      "dashboard_dec",
+      "dashboard_dlabel",
+      "dashboard_drawchart",
+      "dashboard_eaten",
+      "dashboard_esc",
+      "dashboard_expert",
+      "dashboard_fmt",
+      "dashboard_hh",
+      "dashboard_hr",
+      "dashboard_icon",
+      "dashboard_links",
+      "dashboard_load",
+      "dashboard_mealkcal",
+      "dashboard_meals",
+      "dashboard_meta",
+      "dashboard_nav",
+      "dashboard_pickstat",
+      "dashboard_renderall",
+      "dashboard_renderdetail",
+      "dashboard_renderintv",
+      "dashboard_renderlast",
+      "dashboard_renderprog",
+      "dashboard_save",
+      "dashboard_scrim",
+      "dashboard_show",
+      "dashboard_side",
+      "dashboard_stagger",
+      "dashboard_statinfo",
+      "dashboard_sv",
+      "dashboard_tick",
+      "dashboard_toast"
+    ],
+    "2": [
+      "gend_core",
+      "gend_core_gend_api_awal",
+      "gend_core_gend_boot",
+      "gend_core_gend_boot_script",
+      "gend_core_gend_cari_status",
+      "gend_core_gend_catat_progres",
+      "gend_core_gend_csrf",
+      "gend_core_gend_hitung",
+      "gend_core_gend_json",
+      "gend_core_gend_ref",
+      "gend_core_gend_simpan_deteksi",
+      "gend_core_gend_state",
+      "supabase",
+      "supabase_cek_login",
+      "supabase_daftar_user",
+      "supabase_sb_auth_hapus_user",
+      "supabase_sb_auth_login",
+      "supabase_sb_auth_logout",
+      "supabase_sb_auth_refresh",
+      "supabase_sb_auth_signup",
+      "supabase_sb_config",
+      "supabase_sb_email_dari_username",
+      "supabase_sb_err_code",
+      "supabase_sb_err_msg",
+      "supabase_sb_log",
+      "supabase_sb_ok",
+      "supabase_sb_profil_ambil",
+      "supabase_sb_profil_buat",
+      "supabase_sb_ready",
+      "supabase_sb_request",
+      "supabase_sb_rest",
+      "supabase_sb_rpc",
+      "supabase_sb_session_store",
+      "supabase_sb_token",
+      "supabase_sb_username_tersedia"
+    ],
+    "3": [
+      "olahraga_planner",
+      "olahraga_planner_af",
+      "olahraga_planner_bb",
+      "olahraga_planner_buildday",
+      "olahraga_planner_buildplan",
+      "olahraga_planner_buildsteps",
+      "olahraga_planner_closeside",
+      "olahraga_planner_col",
+      "olahraga_planner_dayindex",
+      "olahraga_planner_days",
+      "olahraga_planner_ex",
+      "olahraga_planner_fg",
+      "olahraga_planner_frp",
+      "olahraga_planner_icon",
+      "olahraga_planner_isodate",
+      "olahraga_planner_journey",
+      "olahraga_planner_kx",
+      "olahraga_planner_loado",
+      "olahraga_planner_loads",
+      "olahraga_planner_nav",
+      "olahraga_planner_neg",
+      "olahraga_planner_phc",
+      "olahraga_planner_pka",
+      "olahraga_planner_pkb",
+      "olahraga_planner_plpause",
+      "olahraga_planner_pool_def",
+      "olahraga_planner_pose0",
+      "olahraga_planner_px",
+      "olahraga_planner_s",
+      "olahraga_planner_scrim",
+      "olahraga_planner_side",
+      "olahraga_planner_stre",
+      "olahraga_planner_sv",
+      "olahraga_planner_tick",
+      "olahraga_planner_xd"
+    ],
+    "4": [
+      "register",
+      "register_aim",
+      "register_cap",
+      "register_captxt",
+      "register_cf",
+      "register_cfhint",
+      "register_checkcf",
+      "register_checkpw",
+      "register_clearerr",
+      "register_ef",
+      "register_eyes",
+      "register_fail",
+      "register_labels",
+      "register_lc",
+      "register_left",
+      "register_look",
+      "register_meter",
+      "register_pw",
+      "register_pwhint",
+      "register_say",
+      "register_setsad",
+      "register_strength",
+      "register_svg",
+      "register_tips",
+      "register_tosvg",
+      "register_updatecheer"
+    ],
+    "5": [
+      "deteksi_obesitas",
+      "deteksi_obesitas_bmi_rules",
+      "deteksi_obesitas_bmiruleidx",
+      "deteksi_obesitas_cat",
+      "deteksi_obesitas_closeside",
+      "deteksi_obesitas_countto",
+      "deteksi_obesitas_dec",
+      "deteksi_obesitas_esc",
+      "deteksi_obesitas_estwaist",
+      "deteksi_obesitas_fmt",
+      "deteksi_obesitas_icon",
+      "deteksi_obesitas_load",
+      "deteksi_obesitas_nav",
+      "deteksi_obesitas_renderbmiref",
+      "deteksi_obesitas_save",
+      "deteksi_obesitas_scrim",
+      "deteksi_obesitas_side",
+      "deteksi_obesitas_stagger",
+      "deteksi_obesitas_sv",
+      "deteksi_obesitas_syncwaist",
+      "deteksi_obesitas_tick",
+      "deteksi_obesitas_toast",
+      "deteksi_obesitas_waisterror",
+      "deteksi_obesitas_waistrange"
+    ],
+    "6": [
+      "chatbot",
+      "chatbot_addmsg",
+      "chatbot_ask",
+      "chatbot_bminow",
+      "chatbot_box",
+      "chatbot_cat",
+      "chatbot_closeside",
+      "chatbot_dec",
+      "chatbot_esc",
+      "chatbot_fmt",
+      "chatbot_icon",
+      "chatbot_nav",
+      "chatbot_qs",
+      "chatbot_rules",
+      "chatbot_s",
+      "chatbot_scrim",
+      "chatbot_side",
+      "chatbot_sv",
+      "chatbot_tick"
+    ],
+    "7": [
+      "olahraga_planner_allpts",
+      "olahraga_planner_circ",
+      "olahraga_planner_dr",
+      "olahraga_planner_exbox",
+      "olahraga_planner_exinner",
+      "olahraga_planner_exsvg",
+      "olahraga_planner_exvb",
+      "olahraga_planner_fig",
+      "olahraga_planner_figrun",
+      "olahraga_planner_figsvg",
+      "olahraga_planner_lerp",
+      "olahraga_planner_lerpa",
+      "olahraga_planner_limbpts",
+      "olahraga_planner_ln",
+      "olahraga_planner_mixp",
+      "olahraga_planner_poly",
+      "olahraga_planner_posemix",
+      "olahraga_planner_vadd"
+    ],
+    "8": [
+      "olahraga_planner_cnt",
+      "olahraga_planner_dkey",
+      "olahraga_planner_durtxt",
+      "olahraga_planner_f1",
+      "olahraga_planner_getchecks",
+      "olahraga_planner_krange",
+      "olahraga_planner_logweight",
+      "olahraga_planner_markdone",
+      "olahraga_planner_mkpools",
+      "olahraga_planner_phaseof",
+      "olahraga_planner_phn",
+      "olahraga_planner_render",
+      "olahraga_planner_saveo",
+      "olahraga_planner_sectxt",
+      "olahraga_planner_segsof",
+      "olahraga_planner_sigof",
+      "olahraga_planner_weekpeek",
+      "olahraga_planner_weekplan"
+    ],
+    "9": [
+      "profil",
+      "profil_act",
+      "profil_applyprofile",
+      "profil_catof",
+      "profil_closeside",
+      "profil_dec",
+      "profil_fmt",
+      "profil_icon",
+      "profil_nav",
+      "profil_p",
+      "profil_rows",
+      "profil_rowsel",
+      "profil_s",
+      "profil_scrim",
+      "profil_side",
+      "profil_sv",
+      "profil_tick",
+      "profil_toast"
+    ],
+    "10": [
+      "olahraga_planner_drawpl",
+      "olahraga_planner_esc",
+      "olahraga_planner_finishpl",
+      "olahraga_planner_fmt",
+      "olahraga_planner_go",
+      "olahraga_planner_kdone",
+      "olahraga_planner_mmss",
+      "olahraga_planner_openplayer",
+      "olahraga_planner_plskip",
+      "olahraga_planner_stepdone",
+      "olahraga_planner_tickpl",
+      "olahraga_planner_toast",
+      "olahraga_planner_updring"
+    ],
+    "11": [
+      "login",
+      "login_aim",
+      "login_cap",
+      "login_captxt",
+      "login_eyes",
+      "login_left",
+      "login_look",
+      "login_pw",
+      "login_setsad",
+      "login_svg",
+      "login_tog",
+      "login_tosvg"
+    ],
+    "12": [
+      "index",
+      "index_aim",
+      "index_count",
+      "index_drawcard",
+      "index_drawdist",
+      "index_drawpf",
+      "index_drawtabs",
+      "index_io",
+      "index_menu",
+      "index_onscroll",
+      "index_run"
+    ],
+    "13": [
+      "edukasi_pengguna",
+      "edukasi_pengguna_art",
+      "edukasi_pengguna_closeside",
+      "edukasi_pengguna_esc",
+      "edukasi_pengguna_icon",
+      "edukasi_pengguna_nav",
+      "edukasi_pengguna_scrim",
+      "edukasi_pengguna_side",
+      "edukasi_pengguna_sv",
+      "edukasi_pengguna_tick"
+    ],
+    "14": [
+      "olahraga_planner_ang",
+      "olahraga_planner_elbpose",
+      "olahraga_planner_ika",
+      "olahraga_planner_kneepose",
+      "olahraga_planner_pikepose",
+      "olahraga_planner_pushpose"
+    ],
+    "15": [
+      "assets_gambargendutdanmeteran",
+      "assets_logo",
+      "assets_maskot_alpukat",
+      "assets_maskot_bit",
+      "assets_maskot_wortel"
+    ],
+    "16": [
+      "github_copilot_instructions",
+      "graphify_tool"
+    ],
+    "17": [
+      "olahraga_planner_figstop",
+      "olahraga_planner_plclose"
+    ],
+    "18": [
+      "api_deteksi"
+    ],
+    "19": [
+      "api_progres"
+    ],
+    "20": [
+      "assets_buahsayur"
+    ],
+    "21": [
+      "assets_buahsayurlove"
+    ],
+    "22": [
+      "assets_gambarkanan"
+    ],
+    "23": [
+      "assets_gambarkiri"
+    ],
+    "24": [
+      "gend_boot"
+    ],
+    "25": [
+      "logout"
+    ]
+  },
+  "cohesion": {
+    "0": 0.08562367864693446,
+    "1": 0.12162162162162163,
+    "2": 0.16806722689075632,
+    "3": 0.06890756302521009,
+    "4": 0.10461538461538461,
+    "5": 0.11594202898550725,
+    "6": 0.1111111111111111,
+    "7": 0.17647058823529413,
+    "8": 0.1830065359477124,
+    "9": 0.1111111111111111,
+    "10": 0.20512820512820512,
+    "11": 0.21212121212121213,
+    "12": 0.2545454545454545,
+    "13": 0.2,
+    "14": 0.5333333333333333,
+    "15": 0.4,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0
+  },
+  "gods": [
+    {
+      "id": "olahraga_planner_render",
+      "label": "render()",
+      "degree": 21
+    },
+    {
+      "id": "dashboard_renderall",
+      "label": "renderAll()",
+      "degree": 16
+    },
+    {
+      "id": "olahraga_planner_drawpl",
+      "label": "drawPl()",
+      "degree": 13
+    },
+    {
+      "id": "supabase_daftar_user",
+      "label": "daftar_user()",
+      "degree": 12
+    },
+    {
+      "id": "supabase_sb_log",
+      "label": "sb_log()",
+      "degree": 12
+    },
+    {
+      "id": "dashboard_statinfo",
+      "label": "statInfo()",
+      "degree": 11
+    },
+    {
+      "id": "supabase_sb_ok",
+      "label": "sb_ok()",
+      "degree": 11
+    },
+    {
+      "id": "supabase_cek_login",
+      "label": "cek_login()",
+      "degree": 10
+    },
+    {
+      "id": "supabase_sb_request",
+      "label": "sb_request()",
+      "degree": 10
+    },
+    {
+      "id": "gizi_planner_draw4",
+      "label": "draw4()",
+      "degree": 9
+    }
+  ],
+  "surprises": [
+    {
+      "source": "gend_catat_progres()",
+      "target": "sb_log()",
+      "source_files": [
+        "gend_core.php",
+        "supabase.php"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source"
+    },
+    {
+      "source": "gend_ref()",
+      "target": "sb_log()",
+      "source_files": [
+        "gend_core.php",
+        "supabase.php"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source"
+    },
+    {
+      "source": "gend_simpan_deteksi()",
+      "target": "sb_log()",
+      "source_files": [
+        "gend_core.php",
+        "supabase.php"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source"
+    },
+    {
+      "source": "gend_state()",
+      "target": "sb_log()",
+      "source_files": [
+        "gend_core.php",
+        "supabase.php"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source"
+    },
+    {
+      "source": "gend_catat_progres()",
+      "target": "sb_ok()",
+      "source_files": [
+        "gend_core.php",
+        "supabase.php"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `render()` connect `login.php` to `logout.php`, `edukasi_pengguna.php`, `register.php`, `figSVG`?",
+      "why": "High betweenness centrality (0.001) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 4 inferred relationships involving `sb_log()` (e.g. with `gend_catat_progres()` and `gend_ref()`) actually correct?",
+      "why": "`sb_log()` has 4 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Person measuring waist with tape`, `Avocado Mascot`, `Beetroot Mascot` to the rest of the system?",
+      "why": "10 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `olahraga_planner.php` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08562367864693446 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `gizi_planner.php` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12162162162162163 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `register.php` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06890756302521009 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `deteksi_obesitas.php` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.10461538461538461 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

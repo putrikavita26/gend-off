@@ -4,13 +4,8 @@
 // Peraga gerakan berupa animasi SVG (pria/wanita sesuai hasil deteksi), tidak butuh file gambar tambahan.
 session_start();
 
-// Simulasi login sementara (Hapus/sesuaikan baris ini jika sudah terhubung database)
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['user_id'] = 1;
-    $_SESSION['username'] = 'Pengguna';
-}
-// Aktifkan baris di bawah ini untuk proteksi halaman yang sebenarnya:
-// if (!isset($_SESSION['user_id'])) { header('Location: login.php'); exit; }
+// Halaman ini hanya untuk pengguna yang sudah login (simulasi login sementara sudah dihapus)
+if (!isset($_SESSION['user_id'])) { header('Location: login.php'); exit; }
 
 $username = htmlspecialchars($_SESSION['username'] ?? 'Faaiz');
 $inisial  = htmlspecialchars(mb_strtoupper(mb_substr($_SESSION['username'] ?? 'F', 0, 1)));
@@ -333,7 +328,7 @@ const ICON={
 const NAV=[
  {g:'Utama',items:[['dashboard','Dashboard','grid','dashboard.php']]},
  {g:'Pemeriksaan & Menu',items:[['deteksi','Deteksi Obesitas','pulse','deteksi_obesitas.php'],['gizi','Gizi Planner','salad','gizi_planner.php'],['olahraga','Olahraga','dumb','olahraga_planner.php']]},
- {g:'Konsultasi & Belajar',items:[['chatbot','Konsultasi AI','chat','dashboard.php#chatbot'],['edukasi','Edukasi Pengguna','book','dashboard.php#edukasi']]},
+ {g:'Belajar',items:[['edukasi','Edukasi Pengguna','book','dashboard.php#edukasi']]},
  {g:'Laporan & Akun',items:[['ekspor','Ekspor Laporan','file','dashboard.php#ekspor'],['profil','Kelola Profil','user','dashboard.php#profil']]}
 ];
 $('#nav').innerHTML=NAV.map(n=>`<div class="nav-label">${n.g}</div>`+n.items.map(i=>`<a class="nav-item${i[0]==='olahraga'?' active':''}" href="${i[3]}"><span class="ic">${ICON[i[2]]}</span>${i[1]}</a>`).join('')).join('');

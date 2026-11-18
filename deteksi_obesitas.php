@@ -3,8 +3,8 @@
 // Letakkan di: htdocs/gend-off/deteksi_obesitas.php | aset di: assets/
 session_start();
 
-// Halaman ini hanya untuk pengguna yang sudah login
-if (!isset($_SESSION['user_id'])) { header('Location: login.php'); exit; }
+require_once __DIR__ . '/gend_core.php';
+$G = gend_boot();
 
 $username = htmlspecialchars($_SESSION['username'] ?? 'Faaiz');
 $inisial  = htmlspecialchars(mb_strtoupper(mb_substr($_SESSION['username'] ?? 'F', 0, 1)));
@@ -490,6 +490,7 @@ body{
 @media(max-width:900px){.hero-vid{width:100%;opacity:.28}.iv-grid{grid-template-columns:1fr}.clk small,.clk-ic{display:none}.clk{padding:8px 12px}.sd-grid{grid-template-columns:1fr 1fr}.hero-card{padding:24px 20px}.hero-side{min-width:0;width:100%}.sec-h h1{font-size:1.4rem}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.cl{stroke-dashoffset:0!important}.ca,.cd{opacity:1!important}}
 </style>
+<?= gend_boot_script($G) ?>
 </head>
 <body>
 <div class="scrim" id="scrim"></div>
@@ -525,7 +526,7 @@ body{
         <div class="card">
           <form class="form-grid" onsubmit="return false">
             <div class="field"><label>Jenis Kelamin</label><select id="fG"><option value="L">Laki-laki</option><option value="P">Perempuan</option></select></div>
-            <div class="field"><label>Usia (tahun)</label><input type="number" id="fU" placeholder="Mis. 22" min="15" max="80"></div>
+            <div class="field"><label>Tanggal Lahir</label><input type="date" id="fDOB" max="<?= date('Y-m-d') ?>" required><small>Untuk pengguna usia 18–80 tahun.</small></div>
             <div class="field"><label>Tinggi Badan (cm)</label><input type="number" id="fTB" placeholder="Mis. 165" min="100" max="250"></div>
             <div class="field"><label>Berat Badan (kg)</label><input type="number" step="0.1" id="fBB" placeholder="Mis. 75" min="20" max="300"></div>
             <div class="field"><label>Lingkar Perut (cm)</label>
@@ -534,7 +535,11 @@ body{
               <div class="fhint" id="wHint">Ukur dengan meteran di sebatas pusar, setelah menghembuskan napas.</div>
             </div>
             <div class="field"><label>Target Berat Badan (kg)</label><input type="number" step="0.1" id="fT" placeholder="Mis. 60" min="30" max="200"></div>
-            <div class="field"><label>Tingkat Aktivitas Fisik</label><select id="fA"><option value="1.2">Sedentari (jarang olahraga)</option><option value="1.375" selected>Ringan (1–3 hari/minggu)</option><option value="1.55">Sedang (3–5 hari/minggu)</option><option value="1.725">Berat (6–7 hari/minggu)</option></select></div>
+            <div class="field"><label>Tingkat Aktivitas Fisik</label><select id="fA" required>
+              <?php foreach ($G['ref']['aktivitas'] as $aktivitas): ?>
+                <option value="<?= (int)$aktivitas['id'] ?>"<?= (float)$aktivitas['faktor'] === 1.375 ? ' selected' : '' ?>><?= htmlspecialchars($aktivitas['nama']) ?> (<?= number_format((float)$aktivitas['faktor'], 3, ',', '.') ?>)</option>
+              <?php endforeach; ?>
+            </select></div>
             <div class="field"><label>Riwayat Penyakit (opsional)</label><input type="text" id="fP" placeholder="Mis. asam lambung, hipertensi"></div>
             <div class="field full"><button class="btn btn-p btn-w" id="btA">Analisis Sekarang →</button></div>
           </form>
@@ -575,7 +580,7 @@ const ICON={
 const NAV=[
  {g:'Utama',items:[['dashboard','Dashboard','grid','dashboard.php']]},
  {g:'Pemeriksaan & Menu',items:[['deteksi','Deteksi Obesitas','pulse','deteksi_obesitas.php'],['gizi','Gizi Planner','salad','gizi_planner.php'],['olahraga','Olahraga','dumb','olahraga_planner.php']]},
- {g:'Konsultasi & Belajar',items:[['chatbot','Konsultasi AI','chat','chatbot.php'],['edukasi','Edukasi Pengguna','book','edukasi_pengguna.php']]},
+ {g:'Belajar',items:[['edukasi','Edukasi Pengguna','book','edukasi_pengguna.php']]},
  {g:'Laporan & Akun',items:[['ekspor','Ekspor Laporan','file','dashboard.php#ekspor'],['profil','Kelola Profil','user','profil.php']]}
 ];
 $('#nav').innerHTML=NAV.map(n=>`<div class="nav-label">${n.g}</div>`+n.items.map(i=>`<a class="nav-item${i[0]==='deteksi'?' active':''}" href="${i[3]}"><span class="ic">${ICON[i[2]]}</span>${i[1]}</a>`).join('')).join('');
@@ -596,7 +601,7 @@ function load(){
   save();
 }
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
-const cat=b=>b<18.5?['Kurus','#fff4d6','#8a6300']:b<23?['Normal','#e5f6ec','#0f7a4f']:b<25?['Overweight','#fff4d6','#8a6300']:b<30?['Obesitas I','#fde8e6','#c2362b']:['Obesitas II','#fbd9d6','#a11f17'];
+const cat=b=>GEND.cat(b);
 function toast(msg){const t=document.createElement('div');t.className='toast';t.textContent=msg;$('#toasts').appendChild(t);setTimeout(()=>t.classList.add('out'),2600);setTimeout(()=>t.remove(),3100)}
 function countTo(el,to,d=0,ms=800){const from=parseFloat(el.dataset.v||0);el.dataset.v=to;const t0=performance.now();
   const f=t=>{const k=Math.min(1,(t-t0)/ms),e=1-Math.pow(1-k,3),v=from+(to-from)*e;el.textContent=d?dec(v,d):fmt(v);if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
@@ -665,21 +670,32 @@ $('#wMode').addEventListener('click',e=>{const b=e.target.closest('button');if(!
 $('#fG').addEventListener('change',syncWaist);
 
 /* ===== DETEKSI (forward chaining) ===== */
-$('#btA').onclick=()=>{
+$('#btA').onclick=async()=>{
   syncWaist();
-  const g=$('#fG').value,age=+$('#fU').value,tb=+$('#fTB').value,bb=+$('#fBB').value,wa=+$('#fW').value,goal=+$('#fT').value,af=+$('#fA').value,pen=$('#fP').value.toLowerCase();
-  if(!age||!tb||!bb||!wa||!goal){toast('Lengkapi semua data wajib dulu ya');return}
+  const g=$('#fG').value,tgl_lahir=$('#fDOB').value,tb=+$('#fTB').value,bb=+$('#fBB').value,wa=+$('#fW').value,goal=+$('#fT').value,id_aktivitas=+$('#fA').value,pen=$('#fP').value.trim();
+  if(!tgl_lahir||!tb||!bb||!wa||!goal||!id_aktivitas){toast('Lengkapi semua data wajib dulu ya');return}
   if(wMode==='manual'){const er=waistError(g,tb,bb,wa);if(er){toast('Periksa lingkar perut: '+er);$('#fW').focus();return}}
-  const m=tb/100,bmi=bb/(m*m),c=cat(bmi),over=bmi>=23,estW=wMode==='auto';
-  const bmr=10*bb+6.25*tb-5*age+(g==='L'?5:-161),tdee=bmr*af,floor=g==='L'?1500:1200;
-  const tgt=over?Math.max(floor,tdee-500):tdee,defisit=Math.round(tdee-tgt);
-  const lim=g==='L'?90:80,risk=wa>=lim?(bmi>=25?['Tinggi','#d8452e']:['Sedang','#c97a10']):(bmi>=25?['Sedang','#c97a10']:['Rendah','#0f7a4f']);
-  const diff=bb-goal,wk=over&&diff>0?diff/.5:0,wkTxt=wk?`${Math.max(1,Math.ceil(wk*.9))} – ${Math.ceil(wk*1.1)} minggu`:'Tidak perlu defisit';
-  const prot=Math.round(1.2*Math.min(bb,goal));
+  const button=$('#btA');
+  button.disabled=true;
+  button.textContent='Menganalisis…';
+  let response;
+  try{
+    response=await GEND.deteksi({jk:g,tgl_lahir,tb,bb,goal,wa,we:wMode==='auto',id_aktivitas,pen});
+  }catch(error){
+    toast('Tidak dapat menghubungi server. Coba lagi.');
+    button.disabled=false;
+    button.textContent='Analisis Sekarang →';
+    return;
+  }
+  button.disabled=false;
+  button.textContent='Analisis Sekarang →';
+  if(!response.ok){toast(response.error||'Deteksi gagal disimpan.');return}
+  const h=response.hasil,bmi=h.bmi,c=cat(bmi),over=GEND.kat(bmi).over,estW=wMode==='auto';
+  const bmr=h.bmr,tdee=h.tdee,tgt=h.target,defisit=Math.round(tdee-tgt);
+  const risk=GEND.risk(g,bmi,wa),wkTxt=GEND.waktu(over,bb,goal,h.adj),prot=h.protein_g;
+  S=Object.assign(S,JSON.parse(localStorage.getItem(KEY)||'{}'));
   S.tb=tb;S.bb=bb;S.goal=goal;S.target=Math.round(tgt);
-  const td=new Date().toDateString(),l=S.weights[S.weights.length-1];if(l.d===td)l.w=bb;else S.weights.push({d:td,w:bb});
-  const lw=S.waists[S.waists.length-1];if(lw.d===td)lw.w=wa;else S.waists.push({d:td,w:wa});
-  S.last={bmi,cat:c[0],cbg:c[1],cfg:c[2],risk:risk[0],rcol:risk[1],wk:wkTxt,wa,we:estW,tgt:Math.round(tgt),d:td,g,age,af,pen};save();
+  const age=h.usia,af=h.faktor;
   const adv=[];
   if(/lambung|maag|gerd/.test(pen))adv.push(['Asam lambung','Makan porsi kecil tapi sering, hindari pedas, asam, kopi, dan gorengan.']);
   if(/hipertensi|darah tinggi/.test(pen))adv.push(['Hipertensi','Batasi garam di bawah 5 g/hari, kurangi makanan olahan dan asin.']);
@@ -718,6 +734,18 @@ $('#btA').onclick=()=>{
 
 /* ===== INIT ===== */
 load();
+if(GEND.profil){
+  $('#fG').value=GEND.profil.jk;
+  $('#fDOB').value=GEND.profil.tgl_lahir;
+  $('#fTB').value=GEND.profil.tb;
+  $('#fBB').value=GEND.profil.bb;
+  $('#fW').value=GEND.profil.lp;
+  $('#fT').value=GEND.profil.goal;
+  $('#fA').value=GEND.profil.id_aktivitas;
+  $('#fP').value=GEND.profil.pen;
+  wMode=GEND.profil.we?'auto':'manual';
+  $$('#wMode button').forEach(button=>button.classList.toggle('on',button.dataset.m===wMode));
+}
 function tick(){const n=new Date();
   $('#clkT').textContent=n.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).replace(/\./g,':');
   $('#clkD').textContent=n.toLocaleDateString('id-ID',{weekday:'long',day:'2-digit',month:'long',year:'numeric'})}

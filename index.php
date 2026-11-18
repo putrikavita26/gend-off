@@ -463,6 +463,7 @@ section,footer,.hero{position:relative;z-index:1}
 
 .b4{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;padding:34px;background:linear-gradient(135deg,#fbfcf6,#f1f6e3)}
 .cb-l{display:flex;flex-direction:column}
+.coming-badge{align-self:flex-start;margin-top:8px;padding:6px 12px;border-radius:99px;background:#e6efd0;color:#41600e;font-size:.72rem;font-weight:800;letter-spacing:.3px}
 .cl{display:grid;gap:10px;margin-top:18px}
 .cl .u,.cl .a{padding:11px 16px;max-width:88%;font-size:.88rem;font-weight:500;line-height:1.45}
 .cl .u{justify-self:end;background:var(--dark);color:#fff;border-radius:18px 18px 4px 18px}
@@ -659,7 +660,7 @@ section,footer,.hero{position:relative;z-index:1}
 <!-- MARQUEE -->
 <div class="mqx" aria-hidden="true">
   <div class="mqtrack">
-    <span><i>🧮</i>Forward Chaining</span><span><i>🔥</i>Defisit Kalori</span><span><i>🍽️</i>Menu Personal</span><span><i>⚖️</i>Cek BMI Gratis</span><span><i>🤖</i>Chatbot AI</span><span><i>🧑‍🎓</i>Dewasa Muda</span><span><i>🥗</i>Gizi Seimbang</span><span><i>📈</i>Pantau Progres</span>
+    <span><i>🧮</i>Forward Chaining</span><span><i>🔥</i>Defisit Kalori</span><span><i>🍽️</i>Menu Personal</span><span><i>⚖️</i>Cek BMI Gratis</span><span><i>🤖</i>Konsultasi AI Segera Hadir</span><span><i>🧑‍🎓</i>Dewasa Muda</span><span><i>🥗</i>Gizi Seimbang</span><span><i>📈</i>Pantau Progres</span>
   </div>
 </div>
 
@@ -667,9 +668,9 @@ section,footer,.hero{position:relative;z-index:1}
 <section class="stats">
   <div class="wrap st-g">
     <div class="st rv"><b><span data-count="5">0</span></b><span>Kategori status BMI</span><small>Kurus sampai Obesitas II, standar Asia-Pasifik.</small></div>
-    <div class="st rv d1"><b><span data-count="6">0</span></b><span>Fitur dalam satu dashboard</span><small>Dari deteksi sampai ekspor laporan.</small></div>
+    <div class="st rv d1"><b><span data-count="5">0</span></b><span>Fitur siap digunakan</span><small>Dari deteksi sampai ekspor laporan.</small></div>
     <div class="st rv d2"><b><span data-count="4">0</span></b><span>Langkah menuju target</span><small>Daftar, isi data, inferensi, ikuti rencana.</small></div>
-    <div class="st rv d3"><b><span data-count="24">0</span><sup>/7</sup></b><span>Chatbot AI siaga</span><small>Tanya soal gizi kapan saja kamu mau.</small></div>
+    <div class="st rv d3"><b style="font-size:1.55rem">Segera hadir</b><span>Konsultasi AI</span><small>Sedang kami kembangkan agar siap digunakan.</small></div>
   </div>
 </section>
 
@@ -734,17 +735,11 @@ section,footer,.hero{position:relative;z-index:1}
 
       <div class="b b4 rv">
         <div class="cb-l">
-          <div class="ico">🤖</div><h3>Chatbot AI</h3>
-          <p>Tanya seputar diet, gizi, dan olahraga kapan saja. Asisten siap menjawab 24/7.</p>
-          <div class="cl">
-            <div class="u">Boleh makan malam pakai nasi?</div>
-            <div class="a">Boleh! Atur porsinya sekitar 80–100 g dan perbanyak sayur ya 🥦</div>
-            <div class="a"><span class="typingdots"><i></i><i></i><i></i></span></div>
-          </div>
-          <div class="cin"><span>Tanya seputar diet &amp; gizi…</span><b>➤</b></div>
+          <div class="ico">🤖</div><h3>Konsultasi AI</h3>
+          <p>Fitur konsultasi seputar diet, gizi, dan olahraga sedang kami kembangkan. Belum tersedia saat ini, tetapi akan hadir setelah siap digunakan.</p>
+          <span class="coming-badge">Segera Hadir</span>
         </div>
         <div class="rb">
-          <span class="bub bubL">Halo! Mau tanya apa? 👋</span>
           <svg class="rbt" id="rbt" viewBox="0 0 260 300" role="img" aria-label="Maskot robot chatbot GEND-OFF">
             <defs>
               <linearGradient id="rbW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".65" stop-color="#f1f6e4"/><stop offset="1" stop-color="#d9e4bd"/></linearGradient>
@@ -825,7 +820,6 @@ section,footer,.hero{position:relative;z-index:1}
               </g></g>
             </g>
           </svg>
-          <span class="bub bubR">Kalori hari ini 1.050 kkal</span>
         </div>
       </div>
 
@@ -958,7 +952,7 @@ section,footer,.hero{position:relative;z-index:1}
       <div><a href="#home" class="brand"><img src="assets/logo.png" alt=""><span class="bt"><b>GEND<span>-OFF</span></b><small>Gizi-On, Gendut-Off</small></span></a><p>Sistem pakar perancangan menu diet defisit kalori untuk penanganan obesitas pada dewasa muda.</p></div>
       <div><h4>Navigasi</h4><ul><li><a href="#tentang">Tentang</a></li><li><a href="#fitur">Fitur</a></li><li><a href="#cara">Cara Kerja</a></li><li><a href="#faq">FAQ</a></li></ul></div>
       <div><h4>Akun</h4><ul><li><a href="login.php">Masuk</a></li><li><a href="register.php">Daftar</a></li></ul></div>
-      <div><h4>Fitur</h4><ul><li>Deteksi Obesitas</li><li>Meal Planner</li><li>Chatbot AI</li><li>Ekspor Laporan</li></ul></div>
+      <div><h4>Fitur</h4><ul><li>Deteksi Obesitas</li><li>Meal Planner</li><li>Konsultasi AI — Segera Hadir</li><li>Ekspor Laporan</li></ul></div>
     </div>
     <p class="copy">© <?= $tahun ?> GEND-OFF. Informasi bersifat edukatif, bukan pengganti saran medis.</p>
   </div>

@@ -1,6 +1,8 @@
 <?php
 // GEND-OFF — Keluar dari akun: hapus sesi lalu kembali ke login
 session_start();
+require_once __DIR__ . '/supabase.php';
+if (!empty($_SESSION['sb_access'])) { sb_auth_logout($_SESSION['sb_access']); }   // cabut sesi di Supabase
 $_SESSION = [];
 if (ini_get('session.use_cookies')) {
     $c = session_get_cookie_params();

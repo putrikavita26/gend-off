@@ -1,0 +1,188 @@
+{
+  "chatbot.php": {
+    "mtime": 1793295185.5217252,
+    "seen": 1794537975.8487399,
+    "ast_hash": "2a358a74cd8d59ec80d92e47a8a3a3e1",
+    "semantic_hash": "2a358a74cd8d59ec80d92e47a8a3a3e1"
+  },
+  "dashboard.php": {
+    "mtime": 1794537966.6386056,
+    "seen": 1794537975.8487444,
+    "ast_hash": "2d7fe708b8c28e2ccdde5c2e7d5434e6",
+    "semantic_hash": ""
+  },
+  "deteksi_obesitas.php": {
+    "mtime": 1794537966.6420145,
+    "seen": 1794537975.848748,
+    "ast_hash": "5bd1fdffb58b8c249eeef56713514db5",
+    "semantic_hash": ""
+  },
+  "edukasi_pengguna.php": {
+    "mtime": 1793295175.6597812,
+    "seen": 1794537975.8487515,
+    "ast_hash": "86d3de9199b9fcc7bc3512bb6f2e862e",
+    "semantic_hash": "86d3de9199b9fcc7bc3512bb6f2e862e"
+  },
+  "gizi_planner.php": {
+    "mtime": 1794537966.6505392,
+    "seen": 1794537975.848762,
+    "ast_hash": "093692f852e94c7cc36c9d0b086a467f",
+    "semantic_hash": ""
+  },
+  "index.php": {
+    "mtime": 1793295164.7665834,
+    "seen": 1794537975.8487656,
+    "ast_hash": "6c9b405c34d6ba7befedaf70f0505303",
+    "semantic_hash": "6c9b405c34d6ba7befedaf70f0505303"
+  },
+  "login.php": {
+    "mtime": 1794537966.777276,
+    "seen": 1794537975.8487685,
+    "ast_hash": "53ec029d7c9711e7324a1a74b37021ca",
+    "semantic_hash": "53ec029d7c9711e7324a1a74b37021ca"
+  },
+  "logout.php": {
+    "mtime": 1794537966.7807622,
+    "seen": 1794537975.8487716,
+    "ast_hash": "fb4fdc07cd9e689ef6f0f87f483fb853",
+    "semantic_hash": "fb4fdc07cd9e689ef6f0f87f483fb853"
+  },
+  "olahraga_planner.php": {
+    "mtime": 1794537966.7839541,
+    "seen": 1794537975.8487747,
+    "ast_hash": "4e41b2497a115b8e77b179095312df16",
+    "semantic_hash": "4e41b2497a115b8e77b179095312df16"
+  },
+  "profil.php": {
+    "mtime": 1794537966.7873738,
+    "seen": 1794537975.848779,
+    "ast_hash": "1f33eba7dadd8c746a05d27e6f7a82c4",
+    "semantic_hash": "1f33eba7dadd8c746a05d27e6f7a82c4"
+  },
+  "register.php": {
+    "mtime": 1794537966.78978,
+    "seen": 1794537975.8487823,
+    "ast_hash": "e893a7a5450ddb32ece4262ebc60599d",
+    "semantic_hash": "e893a7a5450ddb32ece4262ebc60599d"
+  },
+  ".github/copilot-instructions.md": {
+    "mtime": 1794537966.6303003,
+    "seen": 1794537975.8487895,
+    "ast_hash": "2b23503628bf2ec71d067a85ca8948ab",
+    "semantic_hash": ""
+  },
+  "assets/buahsayur.png": {
+    "mtime": 1792729519.2730422,
+    "seen": 1792760820.7141924,
+    "ast_hash": "4492dbca8f2176142755b423326351a4",
+    "semantic_hash": "4492dbca8f2176142755b423326351a4"
+  },
+  "assets/buahsayurlove.png": {
+    "mtime": 1792729519.3359423,
+    "seen": 1792760820.7141936,
+    "ast_hash": "3379e55e884372b9b9bc57e2f7eee359",
+    "semantic_hash": "3379e55e884372b9b9bc57e2f7eee359"
+  },
+  "assets/gambargendutdanmeteran.jpeg": {
+    "mtime": 1792729519.345914,
+    "seen": 1792760820.7141953,
+    "ast_hash": "91731915f2ed7e6073979d561ff640ec",
+    "semantic_hash": "91731915f2ed7e6073979d561ff640ec"
+  },
+  "assets/gambarkanan.png": {
+    "mtime": 1792729519.416289,
+    "seen": 1792760820.7141964,
+    "ast_hash": "f988acbb45facc7a90488055b2108ecb",
+    "semantic_hash": "f988acbb45facc7a90488055b2108ecb"
+  },
+  "assets/gambarkiri.png": {
+    "mtime": 1792729519.4809022,
+    "seen": 1792760820.7141979,
+    "ast_hash": "9d9119049b314b53c7ea9ef33b8ad97d",
+    "semantic_hash": "9d9119049b314b53c7ea9ef33b8ad97d"
+  },
+  "assets/logo.png": {
+    "mtime": 1792729519.5297427,
+    "seen": 1792760820.7141988,
+    "ast_hash": "dfc3ed133bc728cc5f90f1666618a8aa",
+    "semantic_hash": "dfc3ed133bc728cc5f90f1666618a8aa"
+  },
+  "assets/maskot_alpukat.webp": {
+    "mtime": 1792729519.533116,
+    "seen": 1792760820.7142003,
+    "ast_hash": "b0eae57d470cbe13990c225c242e607c",
+    "semantic_hash": "b0eae57d470cbe13990c225c242e607c"
+  },
+  "assets/maskot_bit.webp": {
+    "mtime": 1792729519.535128,
+    "seen": 1792760820.7142015,
+    "ast_hash": "d96efe972dd3ba5e195779f07a7a22e5",
+    "semantic_hash": "d96efe972dd3ba5e195779f07a7a22e5"
+  },
+  "assets/maskot_wortel.webp": {
+    "mtime": 1792729519.537004,
+    "seen": 1792760820.7142026,
+    "ast_hash": "aad9f423ec077cc64228481b3bcb12b5",
+    "semantic_hash": "aad9f423ec077cc64228481b3bcb12b5"
+  },
+  "assets/running.mp4": {
+    "mtime": 1792729519.6387584,
+    "seen": 1792760820.7142038,
+    "ast_hash": "8f39ebd010c4143d9cf1a438dcbe6522",
+    "semantic_hash": "8f39ebd010c4143d9cf1a438dcbe6522"
+  },
+  "assets/video_index.mp4": {
+    "mtime": 1792729519.7570727,
+    "seen": 1792760820.7142062,
+    "ast_hash": "fb92593284e1dd3c7bde4f106a45d0d5",
+    "semantic_hash": "fb92593284e1dd3c7bde4f106a45d0d5"
+  },
+  "assets/video_index1.mp4": {
+    "mtime": 1792729519.9120803,
+    "seen": 1792760820.7142072,
+    "ast_hash": "7d7e1f4b0d72be91876c0027a1c1d5aa",
+    "semantic_hash": "7d7e1f4b0d72be91876c0027a1c1d5aa"
+  },
+  "assets/video_index2.mp4": {
+    "mtime": 1792729520.137758,
+    "seen": 1792760820.7142086,
+    "ast_hash": "6b2c849b9c7e8211cd9f529fc367de09",
+    "semantic_hash": "6b2c849b9c7e8211cd9f529fc367de09"
+  },
+  "assets/video_index3.mp4": {
+    "mtime": 1792729520.2110379,
+    "seen": 1792760820.7142098,
+    "ast_hash": "aca50770bd17334da6ce1dc9e45fc955",
+    "semantic_hash": "aca50770bd17334da6ce1dc9e45fc955"
+  },
+  "supabase.php": {
+    "mtime": 1794537966.7912633,
+    "seen": 1794537975.848786,
+    "ast_hash": "f4507daa541585581b96a5b5bce683b6",
+    "semantic_hash": ""
+  },
+  "api_deteksi.php": {
+    "mtime": 1794537966.6328208,
+    "seen": 1794537975.8487191,
+    "ast_hash": "abfff594c34768fb74399412b17dd563",
+    "semantic_hash": ""
+  },
+  "api_progres.php": {
+    "mtime": 1794537966.636525,
+    "seen": 1794537975.8487327,
+    "ast_hash": "826d0077efef54c58587f55b257e0d8a",
+    "semantic_hash": ""
+  },
+  "gend_boot.js": {
+    "mtime": 1794537966.6451044,
+    "seen": 1794537975.8487546,
+    "ast_hash": "211f5275865958be5ea27a586a2127ba",
+    "semantic_hash": ""
+  },
+  "gend_core.php": {
+    "mtime": 1794537966.646949,
+    "seen": 1794537975.848758,
+    "ast_hash": "dc0922041b895841330d61a97ff0625d",
+    "semantic_hash": ""
+  }
+}
