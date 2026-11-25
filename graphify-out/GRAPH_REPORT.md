@@ -1,17 +1,17 @@
-# Graph Report - gend-off  (2026-11-13)
+# Graph Report - gend-off  (2026-11-19)
 
 ## Corpus Check
-- 17 files · ~1,989,650 words
+- 21 files · ~1,992,190 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 2 file(s) not represented in the graph (top: (none) 2)
 
 ## Summary
-- 349 nodes · 623 edges · 26 communities (16 shown, 10 thin omitted)
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 29 edges (avg confidence: 0.85)
+- 362 nodes · 642 edges · 29 communities (17 shown, 12 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 33 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d5315db3`
+- Built from commit: `ff1cd697`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -38,29 +38,30 @@
 - Fruit and Vegetable Love Image
 - Right Side Image
 - Left Side Image
+- public.catatan_makan
 
 ## God Nodes (most connected - your core abstractions)
 1. `render()` - 21 edges
 2. `renderAll()` - 16 edges
-3. `drawPl()` - 13 edges
-4. `draw4()` - 12 edges
-5. `sb_log()` - 12 edges
+3. `draw4()` - 13 edges
+4. `drawPl()` - 13 edges
+5. `sb_log()` - 13 edges
 6. `daftar_user()` - 12 edges
-7. `statInfo()` - 11 edges
-8. `sb_ok()` - 11 edges
-9. `sb_request()` - 10 edges
-10. `cek_login()` - 10 edges
+7. `sb_ok()` - 12 edges
+8. `statInfo()` - 11 edges
+9. `cek_login()` - 10 edges
+10. `sb_request()` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `gend_ref()` --calls--> `sb_log()`  [INFERRED]
-  gend_core.php → supabase.php
-- `gend_ref()` --calls--> `sb_ok()`  [INFERRED]
-  gend_core.php → supabase.php
-- `gend_ref()` --calls--> `sb_rest()`  [INFERRED]
-  gend_core.php → supabase.php
-- `gend_ref()` --calls--> `sb_token()`  [INFERRED]
-  gend_core.php → supabase.php
-- `gend_simpan_deteksi()` --calls--> `sb_log()`  [INFERRED]
+- `gizi_food_row()` --calls--> `sb_ok()`  [INFERRED]
+  api_gizi_makan.php → supabase.php
+- `gizi_api_error()` --calls--> `gend_json()`  [INFERRED]
+  api_gizi_makan.php → gend_core.php
+- `gizi_api_error()` --calls--> `sb_log()`  [INFERRED]
+  api_gizi_makan.php → supabase.php
+- `gizi_num()` --calls--> `gend_json()`  [INFERRED]
+  api_gizi_makan.php → gend_core.php
+- `gend_api_awal()` --calls--> `sb_token()`  [INFERRED]
   gend_core.php → supabase.php
 
 ## Import Cycles
@@ -69,19 +70,19 @@
 ## Hyperedges (group relationships)
 - **Fitness Mascots** — assets_maskot_alpukat, assets_maskot_bit, assets_maskot_wortel [EXTRACTED 1.00]
 
-## Communities (26 total, 10 thin omitted)
+## Communities (29 total, 12 thin omitted)
 
 ### Community 0 - "olahraga_planner.php"
-Cohesion: 0.08
-Nodes (41): CATALOG_VERSION, categoryFoods(), countTo(), daySeed, dec(), draw1(), draw2(), draw3() (+33 more)
+Cohesion: 0.07
+Nodes (44): CATALOG_VERSION, countTo(), customFoods, dec(), draw1(), draw2(), draw3(), draw4() (+36 more)
 
 ### Community 1 - "gizi_planner.php"
 Cohesion: 0.12
 Nodes (34): addWaist(), bmiNow(), cat(), catatProgres(), closeSide(), countTo(), dec(), dlabel() (+26 more)
 
 ### Community 2 - "dashboard.php"
-Cohesion: 0.17
-Nodes (32): gend_api_awal(), gend_boot(), gend_cari_status(), gend_catat_progres(), gend_csrf(), gend_hitung(), gend_json(), gend_ref() (+24 more)
+Cohesion: 0.14
+Nodes (35): gizi_api_error(), gizi_food_row(), gizi_num(), gend_api_awal(), gend_boot(), gend_cari_status(), gend_catat_progres(), gend_csrf() (+27 more)
 
 ### Community 3 - "register.php"
 Cohesion: 0.07
@@ -96,8 +97,8 @@ Cohesion: 0.12
 Nodes (16): BMI_RULES, bmiRuleIdx(), countTo(), dec(), estWaist(), fmt(), ICON, load() (+8 more)
 
 ### Community 6 - "profil.php"
-Cohesion: 0.11
-Nodes (10): addMsg(), ask(), box, ICON, NAV, QS, RULES, S (+2 more)
+Cohesion: 0.15
+Nodes (10): addMsg(), ask(), box, CHAT_CSRF, chatHistory, ICON, NAV, QS (+2 more)
 
 ### Community 7 - "figSVG"
 Cohesion: 0.18
@@ -135,25 +136,29 @@ Nodes (6): ang(), elbPose(), ikA(), kneePose(), pikePose(), pushPose()
 Cohesion: 0.40
 Nodes (5): Person measuring waist with tape, Gend-off Logo, Avocado Mascot, Beetroot Mascot, Carrot Mascot
 
+### Community 26 - "public.catatan_makan"
+Cohesion: 0.43
+Nodes (4): catatan_makan_owner_date_idx, makanan_custom_user_owner_name_idx, public.catatan_makan, public.makanan_custom_user
+
 ## Knowledge Gaps
 - **10 isolated node(s):** `Person measuring waist with tape`, `Avocado Mascot`, `Beetroot Mascot`, `Carrot Mascot`, `Graphify Tool` (+5 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 149 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `render()` connect `login.php` to `logout.php`, `edukasi_pengguna.php`, `register.php`, `figSVG`?**
   _High betweenness centrality (0.001) - this node is a cross-community bridge._
-- **Are the 4 inferred relationships involving `sb_log()` (e.g. with `gend_catat_progres()` and `gend_ref()`) actually correct?**
-  _`sb_log()` has 4 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 5 inferred relationships involving `sb_log()` (e.g. with `gizi_api_error()` and `gend_catat_progres()`) actually correct?**
+  _`sb_log()` has 5 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Person measuring waist with tape`, `Avocado Mascot`, `Beetroot Mascot` to the rest of the system?**
   _10 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `olahraga_planner.php` be split into smaller, more focused modules?**
-  _Cohesion score 0.08163265306122448 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07329462989840348 - nodes in this community are weakly interconnected._
 - **Should `gizi_planner.php` be split into smaller, more focused modules?**
   _Cohesion score 0.11948790896159317 - nodes in this community are weakly interconnected._
+- **Should `dashboard.php` be split into smaller, more focused modules?**
+  _Cohesion score 0.14439946018893388 - nodes in this community are weakly interconnected._
 - **Should `register.php` be split into smaller, more focused modules?**
   _Cohesion score 0.06890756302521009 - nodes in this community are weakly interconnected._
-- **Should `deteksi_obesitas.php` be split into smaller, more focused modules?**
-  _Cohesion score 0.10461538461538461 - nodes in this community are weakly interconnected._
